@@ -1,24 +1,505 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect, useMemo, useRef, useState } from "react";
+import { questions, type Question } from "@/lib/quiz-data";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
-  component: Index,
+  component: QuizApp,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+type Phase = "login" | "quiz" | "results";
+
+const QUIZ_MINUTES = 30;
+
+function QuizApp() {
+  const [phase, setPhase] = useState<Phase>("login");
+  const [name, setName] = useState("");
+  const [answers, setAnswers] = useState<Record<number, number>>({});
+  const [current, setCurrent] = useState(0);
+  const [timeLeft, setTimeLeft] = useState(QUIZ_MINUTES * 60);
+
+  return (
+    <div className="relative min-h-screen overflow-hidden">
+      <BackgroundOrbs />
+      <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 sm:px-6 sm:py-14">
+        <header className="mb-8 flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary via-accent to-secondary shadow-glow-sm" />
+            <span className="font-display text-lg font-semibold tracking-tight">
+              Neon<span className="neon-text text-primary">Quiz</span>
+            </span>
+          </div>
+          {phase === "quiz" && (
+            <TimerBadge seconds={timeLeft} />
+          )}
+        </header>
+
+        {phase === "login" && (
+          <LoginCard
+            onStart={(n) => {
+              setName(n);
+              setAnswers({});
+              setCurrent(0);
+              setTimeLeft(QUIZ_MINUTES * 60);
+              setPhase("quiz");
+            }}
+          />
+        )}
+        {phase === "quiz" && (
+          <QuizView
+            name={name}
+            answers={answers}
+            setAnswers={setAnswers}
+            current={current}
+            setCurrent={setCurrent}
+            timeLeft={timeLeft}
+            setTimeLeft={setTimeLeft}
+            onFinish={() => setPhase("results")}
+          />
+        )}
+        {phase === "results" && (
+          <ResultsView
+            name={name}
+            answers={answers}
+            onRetry={() => {
+              setAnswers({});
+              setCurrent(0);
+              setTimeLeft(QUIZ_MINUTES * 60);
+              setPhase("quiz");
+            }}
+            onLogout={() => {
+              setPhase("login");
+              setName("");
+            }}
+          />
+        )}
+      </div>
+    </div>
+  );
+}
+
+function BackgroundOrbs() {
+  return (
+    <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+      <div className="animate-float-orb absolute -left-32 top-10 h-72 w-72 rounded-full bg-primary/30 blur-3xl" />
+      <div
+        className="animate-float-orb absolute -right-20 top-1/3 h-80 w-80 rounded-full bg-secondary/25 blur-3xl"
+        style={{ animationDelay: "-4s" }}
+      />
+      <div
+        className="animate-float-orb absolute bottom-0 left-1/3 h-72 w-72 rounded-full bg-accent/25 blur-3xl"
+        style={{ animationDelay: "-8s" }}
+      />
+    </div>
+  );
+}
+
+function LoginCard({ onStart }: { onStart: (name: string) => void }) {
+  const [value, setValue] = useState("");
+  const [err, setErr] = useState(false);
+
+  return (
+    <div className="animate-scale-in glass neon-border rounded-2xl p-8 sm:p-12">
+      <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1 text-xs uppercase tracking-widest text-muted-foreground">
+        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
+        APPSC Group-3 · Chapter 6
+      </div>
+      <h1 className="font-display text-4xl font-bold leading-tight sm:text-5xl">
+        Ready to test your <span className="neon-text text-primary">computer</span>
+        <br />
+        <span className="neon-text text-secondary">awareness?</span>
+      </h1>
+      <p className="mt-4 max-w-lg text-muted-foreground">
+        100 timed multiple-choice questions. {QUIZ_MINUTES} minutes on the clock. Enter your name to begin.
+      </p>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          if (value.trim().length < 2) {
+            setErr(true);
+            return;
+          }
+          onStart(value.trim());
+        }}
+        className="mt-8 space-y-4"
+      >
+        <label className="block">
+          <span className="mb-2 block text-sm font-medium text-muted-foreground">Your name</span>
+          <input
+            autoFocus
+            value={value}
+            onChange={(e) => {
+              setValue(e.target.value);
+              setErr(false);
+            }}
+            placeholder="e.g. Sampath"
+            className={`w-full rounded-xl border border-border bg-input/60 px-4 py-3 text-base text-foreground outline-none transition focus:border-primary focus:ring-2 focus:ring-ring/40 ${
+              err ? "animate-shake border-destructive" : ""
+            }`}
+          />
+        </label>
+        <div className="flex flex-wrap items-center gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 text-sm text-muted-foreground">
+          <Stat label="Questions" value="100" />
+          <Divider />
+          <Stat label="Duration" value={`${QUIZ_MINUTES} min`} />
+          <Divider />
+          <Stat label="Format" value="MCQ" />
+        </div>
+        <button
+          type="submit"
+          className="group relative w-full overflow-hidden rounded-xl bg-gradient-to-r from-primary via-accent to-secondary px-6 py-3.5 font-semibold text-primary-foreground transition hover:brightness-110 active:scale-[0.99]"
+        >
+          <span className="absolute inset-0 -translate-x-full bg-white/20 transition-transform duration-700 group-hover:translate-x-full" />
+          Start Quiz →
+        </button>
+      </form>
+    </div>
+  );
+}
+
+function Stat({ label, value }: { label: string; value: string }) {
+  return (
+    <div>
+      <div className="text-[10px] uppercase tracking-widest text-muted-foreground/70">{label}</div>
+      <div className="font-display text-base text-foreground">{value}</div>
+    </div>
+  );
+}
+function Divider() {
+  return <div className="h-8 w-px bg-border" />;
+}
+
+function TimerBadge({ seconds }: { seconds: number }) {
+  const m = Math.floor(seconds / 60);
+  const s = seconds % 60;
+  const danger = seconds <= 60;
   return (
     <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
+      className={`glass flex items-center gap-2 rounded-full border px-4 py-2 font-display text-sm tabular-nums ${
+        danger ? "border-destructive text-destructive animate-pulse-ring" : "border-border"
+      }`}
     >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+        <circle cx="12" cy="13" r="8" />
+        <path d="M12 9v4l2 2M9 2h6" />
+      </svg>
+      {String(m).padStart(2, "0")}:{String(s).padStart(2, "0")}
+    </div>
+  );
+}
+
+function QuizView({
+  name,
+  answers,
+  setAnswers,
+  current,
+  setCurrent,
+  timeLeft,
+  setTimeLeft,
+  onFinish,
+}: {
+  name: string;
+  answers: Record<number, number>;
+  setAnswers: (fn: (a: Record<number, number>) => Record<number, number>) => void;
+  current: number;
+  setCurrent: (n: number) => void;
+  timeLeft: number;
+  setTimeLeft: (fn: (t: number) => number) => void;
+  onFinish: () => void;
+}) {
+  const q: Question = questions[current];
+  const total = questions.length;
+  const progress = ((current + 1) / total) * 100;
+  const finishedRef = useRef(false);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTimeLeft((t) => {
+        if (t <= 1) {
+          clearInterval(id);
+          if (!finishedRef.current) {
+            finishedRef.current = true;
+            onFinish();
+          }
+          return 0;
+        }
+        return t - 1;
+      });
+    }, 1000);
+    return () => clearInterval(id);
+  }, [onFinish, setTimeLeft]);
+
+  const selected = answers[q.id];
+
+  return (
+    <div className="animate-slide-up">
+      <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
+        <span>Hello, <span className="text-foreground">{name}</span></span>
+        <span>
+          Question <span className="font-display text-foreground">{current + 1}</span> / {total}
+        </span>
+      </div>
+      <div className="mb-6 h-1.5 overflow-hidden rounded-full bg-muted">
+        <div
+          className="h-full rounded-full bg-gradient-to-r from-primary via-accent to-secondary transition-[width] duration-500"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+
+      <div key={q.id} className="animate-scale-in glass neon-border rounded-2xl p-6 sm:p-8">
+        <div className="mb-3 flex items-center gap-2">
+          <span className="rounded-full border border-border bg-muted/40 px-2.5 py-0.5 text-[10px] uppercase tracking-widest text-muted-foreground">
+            {q.topic}
+          </span>
+          <span
+            className={`rounded-full px-2.5 py-0.5 text-[10px] uppercase tracking-widest ${
+              q.difficulty === "Easy"
+                ? "bg-success/20 text-success"
+                : q.difficulty === "Medium"
+                  ? "bg-secondary/20 text-secondary"
+                  : "bg-destructive/20 text-destructive"
+            }`}
+          >
+            {q.difficulty}
+          </span>
+        </div>
+        <h2 className="font-display text-xl font-semibold leading-snug sm:text-2xl">{q.question}</h2>
+
+        <div className="mt-6 grid gap-3">
+          {q.options.map((opt, i) => {
+            const active = selected === i;
+            return (
+              <button
+                key={i}
+                onClick={() =>
+                  setAnswers((a) => ({ ...a, [q.id]: i }))
+                }
+                className={`group flex items-start gap-3 rounded-xl border p-4 text-left transition ${
+                  active
+                    ? "border-primary bg-primary/10 shadow-glow-sm"
+                    : "border-border bg-muted/20 hover:border-primary/60 hover:bg-primary/5"
+                }`}
+                style={{ animationDelay: `${i * 60}ms` }}
+              >
+                <span
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md font-display text-sm font-semibold transition ${
+                    active
+                      ? "bg-primary text-primary-foreground"
+                      : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
+                  }`}
+                >
+                  {String.fromCharCode(65 + i)}
+                </span>
+                <span className="flex-1 text-sm leading-relaxed sm:text-base">{opt}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="mt-6 flex items-center justify-between gap-3">
+        <button
+          onClick={() => setCurrent(Math.max(0, current - 1))}
+          disabled={current === 0}
+          className="rounded-xl border border-border bg-muted/30 px-5 py-2.5 text-sm font-medium text-foreground transition hover:bg-muted disabled:opacity-40"
+        >
+          ← Previous
+        </button>
+        {current < total - 1 ? (
+          <button
+            onClick={() => setCurrent(current + 1)}
+            className="rounded-xl bg-gradient-to-r from-primary to-accent px-6 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
+          >
+            Next →
+          </button>
+        ) : (
+          <button
+            onClick={onFinish}
+            className="rounded-xl bg-gradient-to-r from-secondary to-success px-6 py-2.5 text-sm font-semibold text-secondary-foreground transition hover:brightness-110"
+          >
+            Submit Quiz ✓
+          </button>
+        )}
+      </div>
+
+      <QuestionGrid answers={answers} current={current} setCurrent={setCurrent} />
+    </div>
+  );
+}
+
+function QuestionGrid({
+  answers,
+  current,
+  setCurrent,
+}: {
+  answers: Record<number, number>;
+  current: number;
+  setCurrent: (n: number) => void;
+}) {
+  return (
+    <div className="mt-8 glass rounded-2xl p-4 sm:p-5">
+      <div className="mb-3 text-xs uppercase tracking-widest text-muted-foreground">Jump to question</div>
+      <div className="grid grid-cols-10 gap-1.5 sm:gap-2">
+        {questions.map((q, i) => {
+          const answered = answers[q.id] !== undefined;
+          const isCurrent = i === current;
+          return (
+            <button
+              key={q.id}
+              onClick={() => setCurrent(i)}
+              className={`aspect-square rounded-md text-[11px] font-semibold transition ${
+                isCurrent
+                  ? "bg-primary text-primary-foreground shadow-glow-sm"
+                  : answered
+                    ? "bg-secondary/30 text-secondary-foreground hover:bg-secondary/50"
+                    : "bg-muted/40 text-muted-foreground hover:bg-muted"
+              }`}
+            >
+              {i + 1}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+function ResultsView({
+  name,
+  answers,
+  onRetry,
+  onLogout,
+}: {
+  name: string;
+  answers: Record<number, number>;
+  onRetry: () => void;
+  onLogout: () => void;
+}) {
+  const { score, total, byTopic } = useMemo(() => {
+    let s = 0;
+    const t: Record<string, { correct: number; total: number }> = {};
+    for (const q of questions) {
+      t[q.topic] ??= { correct: 0, total: 0 };
+      t[q.topic].total++;
+      if (answers[q.id] === q.answer) {
+        s++;
+        t[q.topic].correct++;
+      }
+    }
+    return { score: s, total: questions.length, byTopic: t };
+  }, [answers]);
+
+  const pct = Math.round((score / total) * 100);
+  const grade = pct >= 80 ? "Excellent" : pct >= 60 ? "Great" : pct >= 40 ? "Good" : "Keep Practicing";
+
+  return (
+    <div className="animate-slide-up space-y-6">
+      <div className="glass neon-border rounded-2xl p-8 text-center">
+        <div className="text-xs uppercase tracking-widest text-muted-foreground">Well done, {name}</div>
+        <div className="mt-3 font-display text-6xl font-bold sm:text-7xl">
+          <span className="neon-text text-primary">{score}</span>
+          <span className="text-muted-foreground">/{total}</span>
+        </div>
+        <div className="mt-2 font-display text-xl text-secondary">{grade} · {pct}%</div>
+
+        <div className="mx-auto mt-6 h-2 max-w-md overflow-hidden rounded-full bg-muted">
+          <div
+            className="h-full bg-gradient-to-r from-primary via-accent to-secondary transition-all duration-1000"
+            style={{ width: `${pct}%` }}
+          />
+        </div>
+
+        <div className="mt-6 flex flex-wrap justify-center gap-3">
+          <button
+            onClick={onRetry}
+            className="rounded-xl bg-gradient-to-r from-primary to-accent px-6 py-2.5 text-sm font-semibold text-primary-foreground transition hover:brightness-110"
+          >
+            Retake Quiz
+          </button>
+          <button
+            onClick={onLogout}
+            className="rounded-xl border border-border bg-muted/30 px-6 py-2.5 text-sm font-medium text-foreground transition hover:bg-muted"
+          >
+            Sign Out
+          </button>
+        </div>
+      </div>
+
+      <div className="glass rounded-2xl p-6">
+        <h3 className="mb-4 font-display text-lg font-semibold">Score by topic</h3>
+        <div className="grid gap-2 sm:grid-cols-2">
+          {Object.entries(byTopic).map(([topic, v]) => {
+            const p = Math.round((v.correct / v.total) * 100);
+            return (
+              <div key={topic} className="rounded-lg border border-border bg-muted/20 p-3">
+                <div className="mb-1 flex items-center justify-between text-xs">
+                  <span className="text-muted-foreground">{topic}</span>
+                  <span className="font-display text-foreground">
+                    {v.correct}/{v.total}
+                  </span>
+                </div>
+                <div className="h-1.5 overflow-hidden rounded-full bg-muted">
+                  <div
+                    className="h-full bg-gradient-to-r from-primary to-secondary"
+                    style={{ width: `${p}%` }}
+                  />
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className="glass rounded-2xl p-6">
+        <h3 className="mb-4 font-display text-lg font-semibold">Review answers</h3>
+        <div className="space-y-3">
+          {questions.map((q, i) => {
+            const chosen = answers[q.id];
+            const correct = chosen === q.answer;
+            return (
+              <details
+                key={q.id}
+                className="group rounded-lg border border-border bg-muted/20 p-3 open:bg-muted/30"
+              >
+                <summary className="flex cursor-pointer items-start gap-3 list-none">
+                  <span
+                    className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-[11px] font-bold ${
+                      chosen === undefined
+                        ? "bg-muted text-muted-foreground"
+                        : correct
+                          ? "bg-success/20 text-success"
+                          : "bg-destructive/20 text-destructive"
+                    }`}
+                  >
+                    {i + 1}
+                  </span>
+                  <span className="flex-1 text-sm">{q.question}</span>
+                  <span className="text-xs text-muted-foreground transition group-open:rotate-180">▾</span>
+                </summary>
+                <div className="mt-3 space-y-1 pl-9 text-sm">
+                  <div className="text-muted-foreground">
+                    Your answer:{" "}
+                    <span className={correct ? "text-success" : "text-destructive"}>
+                      {chosen === undefined ? "Not answered" : `${String.fromCharCode(65 + chosen)}) ${q.options[chosen]}`}
+                    </span>
+                  </div>
+                  <div className="text-muted-foreground">
+                    Correct:{" "}
+                    <span className="text-success">
+                      {String.fromCharCode(65 + q.answer)}) {q.options[q.answer]}
+                    </span>
+                  </div>
+                  {q.explanation && (
+                    <div className="mt-2 rounded-md border border-border bg-muted/30 p-2 text-xs text-muted-foreground">
+                      {q.explanation}
+                    </div>
+                  )}
+                </div>
+              </details>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }
