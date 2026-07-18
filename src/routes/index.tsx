@@ -535,6 +535,43 @@ function ResultsView({
         </div>
       </div>
 
+      {rank > 0 && (
+        <div
+          className={`glass rounded-2xl p-6 ${
+            isNewBest ? "neon-border animate-scale-in" : ""
+          }`}
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                {isNewBest ? "New personal best!" : "Your best rank"}
+              </div>
+              <div className="mt-1 font-display text-3xl font-bold sm:text-4xl">
+                <span className="neon-text text-secondary">#{rank}</span>
+                <span className="ml-2 text-base text-muted-foreground">
+                  of {board.length}
+                </span>
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground">
+                Time used · {formatDuration(secondsUsed)}
+              </div>
+            </div>
+            <div
+              className={`flex h-16 w-16 items-center justify-center rounded-full font-display text-2xl font-bold ${
+                rank === 1
+                  ? "bg-primary/20 text-primary shadow-glow-sm"
+                  : rank <= 3
+                    ? "bg-secondary/20 text-secondary"
+                    : "bg-muted text-foreground"
+              }`}
+            >
+              {rank === 1 ? "🏆" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`}
+            </div>
+          </div>
+        </div>
+      )}
+
+
       <div className="glass rounded-2xl p-6">
         <h3 className="mb-4 font-display text-lg font-semibold">Score by topic</h3>
         <div className="grid gap-2 sm:grid-cols-2">
