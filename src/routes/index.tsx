@@ -168,6 +168,15 @@ function LoginCard({ onStart }: { onStart: (name: string) => void }) {
         </button>
       </form>
     </div>
+
+      <LeaderboardCard
+        board={board}
+        title="Top players"
+        limit={5}
+        compact
+        emptyHint="No scores yet — finish a quiz to appear here."
+      />
+    </div>
   );
 }
 
