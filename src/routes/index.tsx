@@ -597,6 +597,15 @@ function ResultsView({
         </div>
       </div>
 
+      <LeaderboardCard
+        board={board}
+        highlightName={name}
+        title="Leaderboard"
+        limit={10}
+      />
+
+
+
       <div className="glass rounded-2xl p-6">
         <h3 className="mb-4 font-display text-lg font-semibold">Review answers</h3>
         <div className="space-y-3">
