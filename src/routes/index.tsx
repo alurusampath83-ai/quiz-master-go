@@ -659,3 +659,88 @@ function ResultsView({
     </div>
   );
 }
+
+function LeaderboardCard({
+  board,
+  highlightName,
+  title = "Leaderboard",
+  limit = 10,
+  compact = false,
+  emptyHint,
+}: {
+  board: LeaderboardEntry[];
+  highlightName?: string;
+  title?: string;
+  limit?: number;
+  compact?: boolean;
+  emptyHint?: string;
+}) {
+  const rows = board.slice(0, limit);
+  const key = highlightName?.trim().toLowerCase();
+  if (rows.length === 0) {
+    return (
+      <div className="glass rounded-2xl p-6">
+        <h3 className="mb-2 font-display text-lg font-semibold">{title}</h3>
+        <p className="text-sm text-muted-foreground">
+          {emptyHint ?? "No scores yet — you could be the first."}
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="glass rounded-2xl p-6">
+      <div className="mb-4 flex items-center justify-between">
+        <h3 className="font-display text-lg font-semibold">{title}</h3>
+        <span className="text-xs uppercase tracking-widest text-muted-foreground">
+          Top {rows.length}
+        </span>
+      </div>
+      <ol className="space-y-1.5">
+        {rows.map((e, i) => {
+          const rank = i + 1;
+          const you = key && e.name.trim().toLowerCase() === key;
+          const medal = rank === 1 ? "🏆" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : null;
+          return (
+            <li
+              key={`${e.name}-${e.date}`}
+              className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-sm transition ${
+                you
+                  ? "border-primary bg-primary/10 shadow-glow-sm"
+                  : "border-border bg-muted/20"
+              }`}
+            >
+              <span
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md font-display text-xs font-bold ${
+                  rank === 1
+                    ? "bg-primary/20 text-primary"
+                    : rank <= 3
+                      ? "bg-secondary/20 text-secondary"
+                      : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {medal ?? rank}
+              </span>
+              <span className="flex-1 truncate font-medium text-foreground">
+                {e.name}
+                {you && (
+                  <span className="ml-2 rounded-full bg-primary/20 px-1.5 py-0.5 text-[10px] uppercase tracking-widest text-primary">
+                    You
+                  </span>
+                )}
+              </span>
+              {!compact && (
+                <span className="hidden text-xs tabular-nums text-muted-foreground sm:inline">
+                  {formatDuration(e.secondsUsed)}
+                </span>
+              )}
+              <span className="font-display tabular-nums text-foreground">
+                {e.score}
+                <span className="text-muted-foreground">/{e.total}</span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
