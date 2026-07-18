@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { questions, type Question } from "@/lib/quiz-data";
+import {
+  formatDuration,
+  getLeaderboard,
+  recordScore,
+  type LeaderboardEntry,
+} from "@/lib/leaderboard";
 
 export const Route = createFileRoute("/")({
   component: QuizApp,
