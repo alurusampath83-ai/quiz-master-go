@@ -256,23 +256,38 @@ function QuizView({
   const total = questions.length;
   const progress = ((current + 1) / total) * 100;
   const finishedRef = useRef(false);
+  const alertedRef = useRef<{ ten: boolean; end: boolean }>({ ten: false, end: false });
+  const [alert, setAlert] = useState<null | { kind: "warn" | "end"; text: string }>(null);
 
   useEffect(() => {
     const id = setInterval(() => {
       setTimeLeft((t) => {
+        const next = t - 1;
+        if (t <= 600 && t > 599 && !alertedRef.current.ten) {
+          alertedRef.current.ten = true;
+          playBeep("warn");
+          setAlert({ kind: "warn", text: "10 minutes remaining" });
+          setTimeout(() => setAlert(null), 5000);
+        }
         if (t <= 1) {
           clearInterval(id);
+          if (!alertedRef.current.end) {
+            alertedRef.current.end = true;
+            playBeep("end");
+            setAlert({ kind: "end", text: "Time's up! Submitting your quiz…" });
+          }
           if (!finishedRef.current) {
             finishedRef.current = true;
-            onFinish();
+            setTimeout(() => onFinish(), 1200);
           }
           return 0;
         }
-        return t - 1;
+        return next;
       });
     }, 1000);
     return () => clearInterval(id);
   }, [onFinish, setTimeLeft]);
+
 
   const selected = answers[q.id];
 
