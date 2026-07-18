@@ -103,8 +103,15 @@ function BackgroundOrbs() {
 function LoginCard({ onStart }: { onStart: (name: string) => void }) {
   const [value, setValue] = useState("");
   const [err, setErr] = useState(false);
+  const [board, setBoard] = useState<LeaderboardEntry[]>([]);
+
+  useEffect(() => {
+    setBoard(getLeaderboard());
+  }, []);
 
   return (
+    <div className="space-y-6">
+
     <div className="animate-scale-in glass neon-border rounded-2xl p-8 sm:p-12">
       <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1 text-xs uppercase tracking-widest text-muted-foreground">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
