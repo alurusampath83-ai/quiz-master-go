@@ -293,6 +293,27 @@ function QuizView({
 
   return (
     <div className="animate-slide-up">
+      {alert && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className={`animate-scale-in pointer-events-none fixed left-1/2 top-4 z-50 -translate-x-1/2 rounded-full border px-5 py-2.5 font-display text-sm shadow-glow-sm backdrop-blur ${
+            alert.kind === "end"
+              ? "border-destructive bg-destructive/20 text-destructive animate-pulse-ring"
+              : "border-secondary bg-secondary/15 text-secondary animate-pulse-ring"
+          }`}
+        >
+          {alert.kind === "end" ? "⏰ " : "⚠ "}
+          {alert.text}
+        </div>
+      )}
+      {alert?.kind === "end" && (
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 z-40 animate-flash-red"
+        />
+      )}
+
       <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
         <span>Hello, <span className="text-foreground">{name}</span></span>
         <span>
