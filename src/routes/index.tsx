@@ -173,10 +173,15 @@ function TimerBadge({ seconds }: { seconds: number }) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   const danger = seconds <= 60;
+  const warn = seconds <= 10 * 60 && seconds > 60;
   return (
     <div
-      className={`glass flex items-center gap-2 rounded-full border px-4 py-2 font-display text-sm tabular-nums ${
-        danger ? "border-destructive text-destructive animate-pulse-ring" : "border-border"
+      className={`glass flex items-center gap-2 rounded-full border px-4 py-2 font-display text-sm tabular-nums transition-colors ${
+        danger
+          ? "border-destructive text-destructive animate-pulse-ring"
+          : warn
+            ? "border-secondary text-secondary animate-pulse-ring"
+            : "border-border"
       }`}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -186,6 +191,46 @@ function TimerBadge({ seconds }: { seconds: number }) {
       {String(m).padStart(2, "0")}:{String(s).padStart(2, "0")}
     </div>
   );
+}
+
+function playBeep(pattern: "warn" | "end") {
+  try {
+    const AC =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const ctx = new AC();
+    const notes =
+      pattern === "warn"
+        ? [{ f: 880, t: 0 }, { f: 880, t: 0.25 }, { f: 1175, t: 0.5 }]
+        : [
+            { f: 660, t: 0 },
+            { f: 660, t: 0.2 },
+            { f: 660, t: 0.4 },
+            { f: 440, t: 0.7 },
+            { f: 300, t: 1.05 },
+          ];
+    const now = ctx.currentTime;
+    for (const n of notes) {
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = "square";
+      osc.frequency.value = n.f;
+      osc.connect(g);
+      g.connect(ctx.destination);
+      const start = now + n.t;
+      const dur = pattern === "end" && n.t >= 0.7 ? 0.35 : 0.18;
+      g.gain.setValueAtTime(0.0001, start);
+      g.gain.exponentialRampToValueAtTime(0.25, start + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+      osc.start(start);
+      osc.stop(start + dur + 0.02);
+    }
+    setTimeout(() => {
+      ctx.close().catch(() => {});
+    }, 2500);
+  } catch {
+    // ignore audio failures
+  }
 }
 
 function QuizView({
