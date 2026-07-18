@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { questions, type Question } from "@/lib/quiz-data";
+import {
+  formatDuration,
+  getLeaderboard,
+  recordScore,
+  type LeaderboardEntry,
+} from "@/lib/leaderboard";
 
 export const Route = createFileRoute("/")({
   component: QuizApp,
@@ -60,6 +66,7 @@ function QuizApp() {
           <ResultsView
             name={name}
             answers={answers}
+            secondsUsed={QUIZ_MINUTES * 60 - timeLeft}
             onRetry={() => {
               setAnswers({});
               setCurrent(0);
@@ -96,8 +103,15 @@ function BackgroundOrbs() {
 function LoginCard({ onStart }: { onStart: (name: string) => void }) {
   const [value, setValue] = useState("");
   const [err, setErr] = useState(false);
+  const [board, setBoard] = useState<LeaderboardEntry[]>([]);
+
+  useEffect(() => {
+    setBoard(getLeaderboard());
+  }, []);
 
   return (
+    <div className="space-y-6">
+
     <div className="animate-scale-in glass neon-border rounded-2xl p-8 sm:p-12">
       <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/40 px-3 py-1 text-xs uppercase tracking-widest text-muted-foreground">
         <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-primary" />
@@ -153,6 +167,15 @@ function LoginCard({ onStart }: { onStart: (name: string) => void }) {
           Start Quiz →
         </button>
       </form>
+    </div>
+
+      <LeaderboardCard
+        board={board}
+        title="Top players"
+        limit={5}
+        compact
+        emptyHint="No scores yet — finish a quiz to appear here."
+      />
     </div>
   );
 }
@@ -448,11 +471,13 @@ function QuestionGrid({
 function ResultsView({
   name,
   answers,
+  secondsUsed,
   onRetry,
   onLogout,
 }: {
   name: string;
   answers: Record<number, number>;
+  secondsUsed: number;
   onRetry: () => void;
   onLogout: () => void;
 }) {
@@ -472,6 +497,26 @@ function ResultsView({
 
   const pct = Math.round((score / total) * 100);
   const grade = pct >= 80 ? "Excellent" : pct >= 60 ? "Great" : pct >= 40 ? "Good" : "Keep Practicing";
+
+  const [board, setBoard] = useState<LeaderboardEntry[]>([]);
+  const [rank, setRank] = useState<number>(0);
+  const [isNewBest, setIsNewBest] = useState(false);
+  const recordedRef = useRef(false);
+
+  useEffect(() => {
+    if (recordedRef.current) return;
+    recordedRef.current = true;
+    const result = recordScore({
+      name,
+      score,
+      total,
+      pct,
+      secondsUsed: Math.max(0, Math.min(secondsUsed, 30 * 60)),
+    });
+    setBoard(result.board);
+    setRank(result.rank);
+    setIsNewBest(result.isNewBest);
+  }, [name, score, total, pct, secondsUsed]);
 
   return (
     <div className="animate-slide-up space-y-6">
@@ -506,6 +551,43 @@ function ResultsView({
         </div>
       </div>
 
+      {rank > 0 && (
+        <div
+          className={`glass rounded-2xl p-6 ${
+            isNewBest ? "neon-border animate-scale-in" : ""
+          }`}
+        >
+          <div className="flex items-center justify-between gap-4">
+            <div>
+              <div className="text-xs uppercase tracking-widest text-muted-foreground">
+                {isNewBest ? "New personal best!" : "Your best rank"}
+              </div>
+              <div className="mt-1 font-display text-3xl font-bold sm:text-4xl">
+                <span className="neon-text text-secondary">#{rank}</span>
+                <span className="ml-2 text-base text-muted-foreground">
+                  of {board.length}
+                </span>
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground">
+                Time used · {formatDuration(secondsUsed)}
+              </div>
+            </div>
+            <div
+              className={`flex h-16 w-16 items-center justify-center rounded-full font-display text-2xl font-bold ${
+                rank === 1
+                  ? "bg-primary/20 text-primary shadow-glow-sm"
+                  : rank <= 3
+                    ? "bg-secondary/20 text-secondary"
+                    : "bg-muted text-foreground"
+              }`}
+            >
+              {rank === 1 ? "🏆" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : `#${rank}`}
+            </div>
+          </div>
+        </div>
+      )}
+
+
       <div className="glass rounded-2xl p-6">
         <h3 className="mb-4 font-display text-lg font-semibold">Score by topic</h3>
         <div className="grid gap-2 sm:grid-cols-2">
@@ -530,6 +612,15 @@ function ResultsView({
           })}
         </div>
       </div>
+
+      <LeaderboardCard
+        board={board}
+        highlightName={name}
+        title="Leaderboard"
+        limit={10}
+      />
+
+
 
       <div className="glass rounded-2xl p-6">
         <h3 className="mb-4 font-display text-lg font-semibold">Review answers</h3>
@@ -581,6 +672,91 @@ function ResultsView({
           })}
         </div>
       </div>
+    </div>
+  );
+}
+
+function LeaderboardCard({
+  board,
+  highlightName,
+  title = "Leaderboard",
+  limit = 10,
+  compact = false,
+  emptyHint,
+}: {
+  board: LeaderboardEntry[];
+  highlightName?: string;
+  title?: string;
+  limit?: number;
+  compact?: boolean;
+  emptyHint?: string;
+}) {
+  const rows = board.slice(0, limit);
+  const key = highlightName?.trim().toLowerCase();
+  if (rows.length === 0) {
+    return (
+      <div className="glass rounded-2xl p-6">
+        <h3 className="mb-2 font-display text-lg font-semibold">{title}</h3>
+        <p className="text-sm text-muted-foreground">
+          {emptyHint ?? "No scores yet — you could be the first."}
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="glass rounded-2xl p-6">
+      <div className="mb-4 flex items-center justify-between">
+        <h3 className="font-display text-lg font-semibold">{title}</h3>
+        <span className="text-xs uppercase tracking-widest text-muted-foreground">
+          Top {rows.length}
+        </span>
+      </div>
+      <ol className="space-y-1.5">
+        {rows.map((e, i) => {
+          const rank = i + 1;
+          const you = key && e.name.trim().toLowerCase() === key;
+          const medal = rank === 1 ? "🏆" : rank === 2 ? "🥈" : rank === 3 ? "🥉" : null;
+          return (
+            <li
+              key={`${e.name}-${e.date}`}
+              className={`flex items-center gap-3 rounded-lg border px-3 py-2 text-sm transition ${
+                you
+                  ? "border-primary bg-primary/10 shadow-glow-sm"
+                  : "border-border bg-muted/20"
+              }`}
+            >
+              <span
+                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-md font-display text-xs font-bold ${
+                  rank === 1
+                    ? "bg-primary/20 text-primary"
+                    : rank <= 3
+                      ? "bg-secondary/20 text-secondary"
+                      : "bg-muted text-muted-foreground"
+                }`}
+              >
+                {medal ?? rank}
+              </span>
+              <span className="flex-1 truncate font-medium text-foreground">
+                {e.name}
+                {you && (
+                  <span className="ml-2 rounded-full bg-primary/20 px-1.5 py-0.5 text-[10px] uppercase tracking-widest text-primary">
+                    You
+                  </span>
+                )}
+              </span>
+              {!compact && (
+                <span className="hidden text-xs tabular-nums text-muted-foreground sm:inline">
+                  {formatDuration(e.secondsUsed)}
+                </span>
+              )}
+              <span className="font-display tabular-nums text-foreground">
+                {e.score}
+                <span className="text-muted-foreground">/{e.total}</span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
     </div>
   );
 }
