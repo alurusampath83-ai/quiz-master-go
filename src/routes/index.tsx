@@ -66,6 +66,7 @@ function QuizApp() {
           <ResultsView
             name={name}
             answers={answers}
+            secondsUsed={QUIZ_MINUTES * 60 - timeLeft}
             onRetry={() => {
               setAnswers({});
               setCurrent(0);
