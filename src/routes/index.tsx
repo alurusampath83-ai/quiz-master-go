@@ -173,10 +173,15 @@ function TimerBadge({ seconds }: { seconds: number }) {
   const m = Math.floor(seconds / 60);
   const s = seconds % 60;
   const danger = seconds <= 60;
+  const warn = seconds <= 10 * 60 && seconds > 60;
   return (
     <div
-      className={`glass flex items-center gap-2 rounded-full border px-4 py-2 font-display text-sm tabular-nums ${
-        danger ? "border-destructive text-destructive animate-pulse-ring" : "border-border"
+      className={`glass flex items-center gap-2 rounded-full border px-4 py-2 font-display text-sm tabular-nums transition-colors ${
+        danger
+          ? "border-destructive text-destructive animate-pulse-ring"
+          : warn
+            ? "border-secondary text-secondary animate-pulse-ring"
+            : "border-border"
       }`}
     >
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -186,6 +191,46 @@ function TimerBadge({ seconds }: { seconds: number }) {
       {String(m).padStart(2, "0")}:{String(s).padStart(2, "0")}
     </div>
   );
+}
+
+function playBeep(pattern: "warn" | "end") {
+  try {
+    const AC =
+      window.AudioContext ||
+      (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+    const ctx = new AC();
+    const notes =
+      pattern === "warn"
+        ? [{ f: 880, t: 0 }, { f: 880, t: 0.25 }, { f: 1175, t: 0.5 }]
+        : [
+            { f: 660, t: 0 },
+            { f: 660, t: 0.2 },
+            { f: 660, t: 0.4 },
+            { f: 440, t: 0.7 },
+            { f: 300, t: 1.05 },
+          ];
+    const now = ctx.currentTime;
+    for (const n of notes) {
+      const osc = ctx.createOscillator();
+      const g = ctx.createGain();
+      osc.type = "square";
+      osc.frequency.value = n.f;
+      osc.connect(g);
+      g.connect(ctx.destination);
+      const start = now + n.t;
+      const dur = pattern === "end" && n.t >= 0.7 ? 0.35 : 0.18;
+      g.gain.setValueAtTime(0.0001, start);
+      g.gain.exponentialRampToValueAtTime(0.25, start + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, start + dur);
+      osc.start(start);
+      osc.stop(start + dur + 0.02);
+    }
+    setTimeout(() => {
+      ctx.close().catch(() => {});
+    }, 2500);
+  } catch {
+    // ignore audio failures
+  }
 }
 
 function QuizView({
@@ -211,28 +256,64 @@ function QuizView({
   const total = questions.length;
   const progress = ((current + 1) / total) * 100;
   const finishedRef = useRef(false);
+  const alertedRef = useRef<{ ten: boolean; end: boolean }>({ ten: false, end: false });
+  const [alert, setAlert] = useState<null | { kind: "warn" | "end"; text: string }>(null);
 
   useEffect(() => {
     const id = setInterval(() => {
       setTimeLeft((t) => {
+        const next = t - 1;
+        if (t <= 600 && t > 599 && !alertedRef.current.ten) {
+          alertedRef.current.ten = true;
+          playBeep("warn");
+          setAlert({ kind: "warn", text: "10 minutes remaining" });
+          setTimeout(() => setAlert(null), 5000);
+        }
         if (t <= 1) {
           clearInterval(id);
+          if (!alertedRef.current.end) {
+            alertedRef.current.end = true;
+            playBeep("end");
+            setAlert({ kind: "end", text: "Time's up! Submitting your quiz…" });
+          }
           if (!finishedRef.current) {
             finishedRef.current = true;
-            onFinish();
+            setTimeout(() => onFinish(), 1200);
           }
           return 0;
         }
-        return t - 1;
+        return next;
       });
     }, 1000);
     return () => clearInterval(id);
   }, [onFinish, setTimeLeft]);
 
+
   const selected = answers[q.id];
 
   return (
     <div className="animate-slide-up">
+      {alert && (
+        <div
+          role="alert"
+          aria-live="assertive"
+          className={`animate-scale-in pointer-events-none fixed left-1/2 top-4 z-50 -translate-x-1/2 rounded-full border px-5 py-2.5 font-display text-sm shadow-glow-sm backdrop-blur ${
+            alert.kind === "end"
+              ? "border-destructive bg-destructive/20 text-destructive animate-pulse-ring"
+              : "border-secondary bg-secondary/15 text-secondary animate-pulse-ring"
+          }`}
+        >
+          {alert.kind === "end" ? "⏰ " : "⚠ "}
+          {alert.text}
+        </div>
+      )}
+      {alert?.kind === "end" && (
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 z-40 animate-flash-red"
+        />
+      )}
+
       <div className="mb-4 flex items-center justify-between text-xs uppercase tracking-widest text-muted-foreground">
         <span>Hello, <span className="text-foreground">{name}</span></span>
         <span>
