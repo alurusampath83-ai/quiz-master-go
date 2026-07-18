@@ -455,11 +455,13 @@ function QuestionGrid({
 function ResultsView({
   name,
   answers,
+  secondsUsed,
   onRetry,
   onLogout,
 }: {
   name: string;
   answers: Record<number, number>;
+  secondsUsed: number;
   onRetry: () => void;
   onLogout: () => void;
 }) {
@@ -479,6 +481,26 @@ function ResultsView({
 
   const pct = Math.round((score / total) * 100);
   const grade = pct >= 80 ? "Excellent" : pct >= 60 ? "Great" : pct >= 40 ? "Good" : "Keep Practicing";
+
+  const [board, setBoard] = useState<LeaderboardEntry[]>([]);
+  const [rank, setRank] = useState<number>(0);
+  const [isNewBest, setIsNewBest] = useState(false);
+  const recordedRef = useRef(false);
+
+  useEffect(() => {
+    if (recordedRef.current) return;
+    recordedRef.current = true;
+    const result = recordScore({
+      name,
+      score,
+      total,
+      pct,
+      secondsUsed: Math.max(0, Math.min(secondsUsed, 30 * 60)),
+    });
+    setBoard(result.board);
+    setRank(result.rank);
+    setIsNewBest(result.isNewBest);
+  }, [name, score, total, pct, secondsUsed]);
 
   return (
     <div className="animate-slide-up space-y-6">
