@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { questions, type Question } from "@/lib/quiz-data";
 import {
   formatDuration,
+  getDailyStanding,
   getLeaderboard,
   recordScore,
   type LeaderboardEntry,
@@ -502,6 +503,8 @@ function ResultsView({
   const [rank, setRank] = useState<number>(0);
   const [isNewBest, setIsNewBest] = useState(false);
   const [prior, setPrior] = useState<LeaderboardEntry | null>(null);
+  const [dailyRank, setDailyRank] = useState<number>(0);
+  const [dailyTotal, setDailyTotal] = useState<number>(0);
   const recordedRef = useRef(false);
 
   useEffect(() => {
@@ -518,6 +521,9 @@ function ResultsView({
     setRank(result.rank);
     setIsNewBest(result.isNewBest);
     setPrior(result.prior ?? null);
+    const daily = getDailyStanding(name);
+    setDailyRank(daily.rank);
+    setDailyTotal(daily.total);
   }, [name, score, total, pct, secondsUsed]);
 
   return (
@@ -588,6 +594,12 @@ function ResultsView({
           </div>
         </div>
       )}
+
+      {dailyRank === 1 && (
+        <DailyGiftCard name={name} score={score} total={total} contenders={dailyTotal} />
+      )}
+
+
 
       <VsBestCard
         currentScore={score}
@@ -843,6 +855,179 @@ function VsBestCard({
             )}
           </div>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function DailyGiftCard({
+  name,
+  score,
+  total,
+  contenders,
+}: {
+  name: string;
+  score: number;
+  total: number;
+  contenders: number;
+}) {
+  const [opened, setOpened] = useState(false);
+  const confetti = useMemo(
+    () =>
+      Array.from({ length: 32 }, (_, i) => {
+        const colors = ["#f472b6", "#a78bfa", "#38bdf8", "#facc15", "#4ade80", "#fb7185"];
+        return {
+          left: Math.random() * 100,
+          dx: (Math.random() - 0.5) * 260,
+          delay: Math.random() * 0.6,
+          color: colors[i % colors.length],
+          size: 6 + Math.random() * 8,
+        };
+      }),
+    [opened],
+  );
+  const sparkles = useMemo(
+    () =>
+      Array.from({ length: 8 }, () => ({
+        top: 10 + Math.random() * 70,
+        left: 5 + Math.random() * 90,
+        delay: Math.random() * 2,
+      })),
+    [],
+  );
+  const todayStr = new Date().toLocaleDateString(undefined, {
+    weekday: "long",
+    month: "short",
+    day: "numeric",
+  });
+
+  return (
+    <div className="glass neon-border animate-scale-in relative overflow-hidden rounded-2xl p-6 sm:p-8">
+      {/* Sparkles */}
+      {sparkles.map((s, i) => (
+        <span
+          key={i}
+          className="animate-sparkle pointer-events-none absolute text-lg"
+          style={{
+            top: `${s.top}%`,
+            left: `${s.left}%`,
+            animationDelay: `${s.delay}s`,
+          }}
+        >
+          ✨
+        </span>
+      ))}
+
+      {/* Confetti burst on open */}
+      {opened && (
+        <div className="pointer-events-none absolute inset-0 overflow-hidden">
+          {confetti.map((c, i) => (
+            <span
+              key={i}
+              className="animate-confetti absolute top-0 block rounded-sm"
+              style={{
+                left: `${c.left}%`,
+                width: `${c.size}px`,
+                height: `${c.size * 1.6}px`,
+                background: c.color,
+                animationDelay: `${c.delay}s`,
+                ["--dx" as string]: `${c.dx}px`,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      <div className="relative flex flex-col items-center text-center">
+        <div className="animate-crown-glow text-3xl">👑</div>
+        <div className="mt-2 text-xs uppercase tracking-[0.25em] text-primary">
+          Daily Champion
+        </div>
+        <h3 className="mt-1 font-display text-2xl font-bold sm:text-3xl">
+          <span className="neon-text text-primary">{name}</span>, you top today's board!
+        </h3>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {todayStr} · {score}/{total} · beating {Math.max(0, contenders - 1)} other{" "}
+          {contenders - 1 === 1 ? "player" : "players"}
+        </p>
+
+        <button
+          onClick={() => setOpened((v) => !v)}
+          className="mt-6 flex flex-col items-center gap-2 focus:outline-none"
+          aria-label={opened ? "Close gift" : "Open your gift"}
+        >
+          <div
+            className={`relative flex h-28 w-28 items-center justify-center ${
+              opened ? "" : "animate-gift-bounce"
+            }`}
+          >
+            {/* Ribbon shimmer background */}
+            <div
+              className="absolute inset-0 rounded-2xl"
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.72 0.24 305) 0%, oklch(0.78 0.18 200) 50%, oklch(0.75 0.22 350) 100%)",
+                boxShadow: "0 10px 40px oklch(0.72 0.24 305 / 0.5)",
+              }}
+            />
+            <div
+              className="absolute inset-x-0 top-1/2 h-4 -translate-y-1/2 bg-[length:200%_100%]"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent 0%, oklch(1 0 0 / 0.6) 50%, transparent 100%)",
+                animation: "ribbon-shine 2.4s linear infinite",
+                backgroundSize: "200% 100%",
+              }}
+            />
+            <div
+              className="absolute inset-y-0 left-1/2 w-4 -translate-x-1/2"
+              style={{
+                background:
+                  "linear-gradient(180deg, oklch(0.95 0.05 90) 0%, oklch(0.85 0.15 90) 100%)",
+              }}
+            />
+            <span
+              className={`relative text-5xl ${opened ? "" : "animate-gift-shake"}`}
+            >
+              {opened ? "🎉" : "🎁"}
+            </span>
+          </div>
+          <span className="rounded-full border border-primary/50 bg-primary/10 px-4 py-1 text-xs font-semibold uppercase tracking-widest text-primary">
+            {opened ? "Reward unlocked" : "Tap to open your gift"}
+          </span>
+        </button>
+
+        {opened && (
+          <div className="animate-slide-up mt-6 grid w-full gap-3 sm:grid-cols-3">
+            <RewardTile emoji="🏅" label="Champion Badge" note="Today's #1 ribbon" />
+            <RewardTile emoji="🔥" label="Streak Booster" note="Come back tomorrow" />
+            <RewardTile
+              emoji="⚡"
+              label="Bragging Rights"
+              note={`${Math.round((score / total) * 100)}% accuracy`}
+            />
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function RewardTile({
+  emoji,
+  label,
+  note,
+}: {
+  emoji: string;
+  label: string;
+  note: string;
+}) {
+  return (
+    <div className="rounded-xl border border-primary/30 bg-primary/5 p-3 text-center">
+      <div className="text-2xl">{emoji}</div>
+      <div className="mt-1 font-display text-sm font-semibold text-foreground">{label}</div>
+      <div className="text-[11px] uppercase tracking-widest text-muted-foreground">
+        {note}
       </div>
     </div>
   );

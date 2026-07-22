@@ -81,3 +81,26 @@ export function formatDuration(seconds: number) {
   const s = seconds % 60;
   return `${m}:${String(s).padStart(2, "0")}`;
 }
+
+function sameDay(iso: string, ref: Date) {
+  const d = new Date(iso);
+  return (
+    d.getFullYear() === ref.getFullYear() &&
+    d.getMonth() === ref.getMonth() &&
+    d.getDate() === ref.getDate()
+  );
+}
+
+/**
+ * Returns the current player's rank among entries recorded today.
+ * Rank is 1-based; 0 means the player has no entry today.
+ */
+export function getDailyStanding(name: string) {
+  const today = new Date();
+  const key = name.trim().toLowerCase();
+  const todays = safeRead()
+    .filter((e) => sameDay(e.date, today))
+    .sort(compareEntries);
+  const rank = todays.findIndex((e) => e.name.trim().toLowerCase() === key) + 1;
+  return { rank, total: todays.length, leader: todays[0] ?? null, todays };
+}
