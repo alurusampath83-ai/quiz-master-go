@@ -595,6 +595,12 @@ function ResultsView({
         </div>
       )}
 
+      {dailyRank === 1 && (
+        <DailyGiftCard name={name} score={score} total={total} contenders={dailyTotal} />
+      )}
+
+
+
       <VsBestCard
         currentScore={score}
         total={total}
