@@ -68,7 +68,7 @@ export function recordScore(entry: Omit<LeaderboardEntry, "date"> & { date?: str
   safeWrite(next);
   const rank = next.findIndex((e) => e === best) + 1;
   const isNewBest = best === full;
-  return { board: next, rank, entry: best, isNewBest };
+  return { board: next, rank, entry: best, isNewBest, prior };
 }
 
 export function clearLeaderboard() {

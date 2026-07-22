@@ -501,6 +501,7 @@ function ResultsView({
   const [board, setBoard] = useState<LeaderboardEntry[]>([]);
   const [rank, setRank] = useState<number>(0);
   const [isNewBest, setIsNewBest] = useState(false);
+  const [prior, setPrior] = useState<LeaderboardEntry | null>(null);
   const recordedRef = useRef(false);
 
   useEffect(() => {
@@ -516,6 +517,7 @@ function ResultsView({
     setBoard(result.board);
     setRank(result.rank);
     setIsNewBest(result.isNewBest);
+    setPrior(result.prior ?? null);
   }, [name, score, total, pct, secondsUsed]);
 
   return (
@@ -587,6 +589,12 @@ function ResultsView({
         </div>
       )}
 
+      <VsBestCard
+        currentScore={score}
+        total={total}
+        currentSeconds={secondsUsed}
+        prior={prior}
+      />
 
       <div className="glass rounded-2xl p-6">
         <h3 className="mb-4 font-display text-lg font-semibold">Score by topic</h3>
@@ -757,6 +765,85 @@ function LeaderboardCard({
           );
         })}
       </ol>
+    </div>
+  );
+}
+
+function VsBestCard({
+  currentScore,
+  total,
+  currentSeconds,
+  prior,
+}: {
+  currentScore: number;
+  total: number;
+  currentSeconds: number;
+  prior: LeaderboardEntry | null;
+}) {
+  const scoreDiff = prior ? currentScore - prior.score : 0;
+  const timeDiff = prior ? currentSeconds - prior.secondsUsed : 0;
+
+  const scoreBetter = scoreDiff > 0;
+  const scoreEqual = scoreDiff === 0;
+  const timeBetter = timeDiff < 0;
+  const timeEqual = timeDiff === 0;
+
+  let headline: string;
+  if (!prior) {
+    headline = "First attempt — this sets your benchmark!";
+  } else if (scoreBetter || (scoreEqual && timeBetter)) {
+    headline = "You beat your personal best! 🎉";
+  } else if (scoreEqual && timeEqual) {
+    headline = "You matched your personal best exactly.";
+  } else {
+    headline = "Just shy of your best — try again!";
+  }
+
+  return (
+    <div className="glass rounded-2xl p-6">
+      <div className="mb-4 flex items-center justify-between">
+        <h3 className="font-display text-lg font-semibold">vs your best</h3>
+        <span className="text-xs text-muted-foreground">personal record</span>
+      </div>
+      <p className="mb-5 text-sm text-muted-foreground">{headline}</p>
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="rounded-xl border border-border bg-muted/20 p-4">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground">Score</div>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="font-display text-3xl font-bold text-foreground">
+              {currentScore}/{total}
+            </span>
+            {prior && (
+              <span
+                className={`text-sm font-medium ${
+                  scoreBetter ? "text-success" : scoreEqual ? "text-muted-foreground" : "text-destructive"
+                }`}
+              >
+                {scoreBetter ? "+" : ""}
+                {scoreDiff} vs {prior.score}/{prior.total}
+              </span>
+            )}
+          </div>
+        </div>
+        <div className="rounded-xl border border-border bg-muted/20 p-4">
+          <div className="text-xs uppercase tracking-widest text-muted-foreground">Time</div>
+          <div className="mt-1 flex items-baseline gap-2">
+            <span className="font-display text-3xl font-bold text-foreground">
+              {formatDuration(currentSeconds)}
+            </span>
+            {prior && (
+              <span
+                className={`text-sm font-medium ${
+                  timeBetter ? "text-success" : timeEqual ? "text-muted-foreground" : "text-destructive"
+                }`}
+              >
+                {timeBetter ? "-" : "+"}
+                {formatDuration(Math.abs(timeDiff))} vs {formatDuration(prior.secondsUsed)}
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
