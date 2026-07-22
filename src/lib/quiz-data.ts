@@ -3,1402 +3,1402 @@ export type Question = { id: number; difficulty: string; question: string; optio
 export const questions: Question[] = [
   {
     "id": 1,
-    "difficulty": "Easy",
-    "question": "A computer is best defined as a device that accepts data, processes it as per instructions, and produces:",
+    "difficulty": "Medium",
+    "question": "Which type of Operating System allows multiple users to share CPU time, exemplified by UNIX?",
     "options": [
-      "Only printed output",
-      "Meaningful results and stores data for future use",
-      "Only electrical signals",
-      "Only sound output"
+      "Batch OS",
+      "Real-Time OS",
+      "Time-Sharing OS",
+      "Mobile OS"
     ],
-    "answer": 1,
-    "explanation": "A computer accepts input, processes it using a program, produces meaningful output, and also stores data for future use. This is the essence of the IPO (Input-Process-Output) cycle with storage.",
-    "topic": "Fundamentals of Computers"
+    "answer": 2,
+    "explanation": "A Time-Sharing OS, such as UNIX, allows multiple users to share the CPU's processing time simultaneously, giving each user the impression of exclusive access.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 2,
-    "difficulty": "Easy",
-    "question": "In the IPO cycle of a computer, which unit is responsible for holding data before and after processing?",
+    "difficulty": "Medium",
+    "question": "Which type of Operating System is used in systems like Air Traffic Control, where instant processing with strict timing is essential?",
     "options": [
-      "Input Unit",
-      "Processing Unit",
-      "Storage Unit",
-      "Control Unit"
+      "Batch OS",
+      "Distributed OS",
+      "Real-Time OS",
+      "Mobile OS"
     ],
     "answer": 2,
-    "explanation": "The Storage Unit holds data both before it enters processing and after the results are produced, supporting the Input-Process-Output-Storage cycle described in the chapter.",
-    "topic": "Fundamentals of Computers"
+    "explanation": "A Real-Time OS processes data instantly with strict timing requirements, making it essential for critical systems like Air Traffic Control.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 3,
-    "difficulty": "Easy",
-    "question": "Which characteristic of a computer refers to its ability to perform millions of calculations per second?",
+    "difficulty": "Medium",
+    "question": "An OS that manages a group of networked computers is known as a:",
     "options": [
-      "Accuracy",
-      "Speed",
-      "Diligence",
-      "Versatility"
+      "Distributed OS",
+      "Batch OS",
+      "Mobile OS",
+      "Time-Sharing OS"
     ],
-    "answer": 1,
-    "explanation": "Speed refers to the computer's capacity to execute an enormous number of instructions or calculations within a very short time, often measured in nanoseconds.",
-    "topic": "Fundamentals of Computers"
+    "answer": 0,
+    "explanation": "A Distributed OS manages a group of networked computers, allowing them to work together and share resources as a unified system.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 4,
     "difficulty": "Easy",
-    "question": "A computer's ability to work continuously for hours without any loss of efficiency or getting tired is known as:",
+    "question": "Which of the following is a Mobile Operating System based on the Linux kernel?",
     "options": [
-      "Versatility",
-      "Diligence",
-      "Accuracy",
-      "Storage"
+      "Windows",
+      "macOS",
+      "Android",
+      "iOS"
     ],
-    "answer": 1,
-    "explanation": "Diligence is the characteristic that allows a computer to perform repetitive tasks continuously without fatigue or a drop in performance, unlike a human worker.",
-    "topic": "Fundamentals of Computers"
+    "answer": 2,
+    "explanation": "Android is a Mobile OS developed by Google that is based on the Linux kernel, making it the most widely used mobile OS globally.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 5,
-    "difficulty": "Medium",
-    "question": "Which of the following is NOT one of the key characteristics of a computer as described in standard computer awareness syllabi?",
+    "difficulty": "Easy",
+    "question": "Which Operating System is developed by Apple and used exclusively on iPhones?",
     "options": [
-      "Accuracy",
-      "Emotional Intelligence",
-      "Storage",
-      "Diligence"
+      "Android",
+      "iOS",
+      "Linux",
+      "Windows"
     ],
     "answer": 1,
-    "explanation": "A computer has no IQ or emotional intelligence of its own; it works purely as instructed. Emotional Intelligence is a human trait, not a listed computer characteristic.",
-    "topic": "Fundamentals of Computers"
+    "explanation": "iOS is a Mobile OS developed by Apple, used exclusively on iPhones, offering a proprietary, GUI-based mobile experience.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 6,
     "difficulty": "Easy",
-    "question": "The mnemonic 'SAD-SV' used to remember computer characteristics stands for:",
+    "question": "Which Operating System is open source, highly customisable, and widely used in servers?",
     "options": [
-      "Speed, Accuracy, Diligence, Storage, Versatility",
-      "Software, Application, Data, Storage, Versatility",
-      "Speed, Automation, Data, Security, Versatility",
-      "Storage, Accuracy, Data, Speed, Verification"
+      "Windows",
+      "macOS",
+      "Linux",
+      "iOS"
     ],
-    "answer": 0,
-    "explanation": "SAD-SV is a memory trick covering the five key characteristics: Speed, Accuracy, Diligence, Storage, and Versatility.",
-    "topic": "Fundamentals of Computers"
+    "answer": 2,
+    "explanation": "Linux is an open-source Operating System that is free, highly customisable, and widely used in servers due to its cost-effectiveness and security.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 7,
-    "difficulty": "Medium",
-    "question": "Why does a computer give error-free results only sometimes?",
+    "difficulty": "Hard",
+    "question": "Why do many AP e-Governance back-end servers, such as e-Pragati data centres, run on Linux?",
     "options": [
-      "Because it has its own intelligence",
-      "Because accuracy depends on correct input and correct program instructions",
-      "Because it randomly generates output",
-      "Because computers are inherently unreliable"
+      "Because Linux is proprietary and expensive",
+      "Because Linux offers cost-effectiveness and strong security for server infrastructure",
+      "Because Linux cannot support large-scale data processing",
+      "Because Linux is only usable on personal desktop computers"
     ],
     "answer": 1,
-    "explanation": "A computer's accuracy is conditional; it produces error-free results only if the input data and the program instructions given to it are correct, following the Garbage In Garbage Out principle.",
-    "topic": "Fundamentals of Computers"
+    "explanation": "AP e-Governance back-end servers often use Linux because it is cost-effective and offers strong security, which are critical requirements for large-scale, citizen-facing data infrastructure.",
+    "topic": "Software and Operating Systems"
   },
   {
     "id": 8,
     "difficulty": "Easy",
-    "question": "The statement 'a computer has no IQ of its own' means that a computer:",
+    "question": "Which Operating System is proprietary and used exclusively on Apple Macintosh computers?",
     "options": [
-      "Cannot store data",
-      "Cannot think independently and only works as instructed",
-      "Cannot perform calculations",
-      "Cannot be programmed"
+      "Linux",
+      "Android",
+      "macOS",
+      "iOS"
     ],
-    "answer": 1,
-    "explanation": "This characteristic highlights that a computer cannot think or make decisions on its own; it strictly depends on the instructions given by the user or programmer.",
-    "topic": "Fundamentals of Computers"
+    "answer": 2,
+    "explanation": "macOS is a proprietary, GUI-based Operating System developed by Apple, used exclusively on Apple Macintosh computers.",
+    "topic": "Software and Operating Systems Number Systems"
   },
   {
     "id": 9,
     "difficulty": "Easy",
-    "question": "Which characteristic allows a single computer to perform tasks as varied as word processing, gaming, and data analysis?",
+    "question": "Computers internally understand data using which number system?",
     "options": [
-      "Versatility",
-      "Accuracy",
-      "Diligence",
-      "Speed"
+      "Decimal",
+      "Binary",
+      "Octal",
+      "Hexadecimal"
     ],
-    "answer": 0,
-    "explanation": "Versatility refers to a computer's ability to perform many different types of tasks, from simple word processing to complex data analysis, using different software.",
-    "topic": "Fundamentals of Computers"
+    "answer": 1,
+    "explanation": "Computers internally understand only two states, ON and OFF, represented by 1 and 0, which forms the basis of the Binary Number System.",
+    "topic": "Number Systems"
   },
   {
     "id": 10,
     "difficulty": "Easy",
-    "question": "Which of the following best describes 'Storage' as a computer characteristic?",
+    "question": "What is the base of the Binary Number System?",
     "options": [
-      "The ability to display output on a monitor",
-      "The ability to store huge amounts of data permanently",
-      "The speed of processing instructions",
-      "The ability to connect to the internet"
+      "Base 2",
+      "Base 8",
+      "Base 10",
+      "Base 16"
     ],
-    "answer": 1,
-    "explanation": "Storage refers to a computer's capability to retain large volumes of data permanently, which can be retrieved and reused whenever required.",
-    "topic": "Fundamentals of Computers"
+    "answer": 0,
+    "explanation": "The Binary Number System has a base of 2, using only the digits 0 and 1 to represent all values.",
+    "topic": "Number Systems"
   },
   {
     "id": 11,
-    "difficulty": "Medium",
-    "question": "In the analogy comparing a computer to an obedient clerk, what does the clerk represent about the computer's functioning?",
+    "difficulty": "Easy",
+    "question": "Which number system uses digits from 0-7?",
     "options": [
-      "It works only when supervised by another computer",
-      "It follows instructions exactly and quickly, without fatigue, provided instructions are correct",
-      "It makes independent decisions like a human",
-      "It only performs mathematical operations"
+      "Binary",
+      "Octal",
+      "Decimal",
+      "Hexadecimal"
     ],
     "answer": 1,
-    "explanation": "The analogy emphasizes that a computer executes given instructions precisely and rapidly without tiring, but its correctness depends entirely on the accuracy of the instructions provided.",
-    "topic": "Fundamentals of Computers"
+    "explanation": "The Octal Number System has a base of 8 and uses digits ranging from 0 to 7.",
+    "topic": "Number Systems"
   },
   {
     "id": 12,
-    "difficulty": "Easy",
-    "question": "Which of the following correctly represents the flow of the IPO cycle?",
+    "difficulty": "Medium",
+    "question": "The Hexadecimal Number System uses which of the following sets of digits?",
     "options": [
-      "Output then Input then Processing",
-      "Processing then Storage then Input",
-      "Input then Processing then Output, with Storage supporting the cycle",
-      "Storage then Output then Input"
+      "0-7",
+      "0-9",
+      "0-9 and A-F",
+      "0-1"
     ],
     "answer": 2,
-    "explanation": "The standard IPO cycle flows from Input to Processing to Output, with the Storage unit supporting the cycle by holding data before, during, and after processing.",
-    "topic": "Fundamentals of Computers"
+    "explanation": "The Hexadecimal Number System has a base of 16 and uses digits 0-9 along with letters A-F to represent values 10 through 15.",
+    "topic": "Number Systems"
   },
   {
     "id": 13,
-    "difficulty": "Easy",
-    "question": "Which generation of computers used vacuum tubes as their basic electronic component?",
+    "difficulty": "Medium",
+    "question": "Why is the Binary Number System considered the natural language of computers?",
     "options": [
-      "First Generation",
-      "Second Generation",
-      "Third Generation",
-      "Fourth Generation"
+      "Because binary numbers are easier for humans to read",
+      "Because electronic circuits have two stable states that map perfectly to 1 and 0",
+      "Because binary uses ten different digit symbols",
+      "Because binary numbers require less storage than decimal numbers"
     ],
-    "answer": 0,
-    "explanation": "First generation computers (1940-1956) used vacuum tubes for circuitry, examples being ENIAC and UNIVAC. They were large, generated heat, and consumed enormous electricity.",
-    "topic": "Generations of Computers"
+    "answer": 1,
+    "explanation": "Electronic circuits have two stable states, current flowing or not flowing, which map naturally to the binary digits 1 and 0, making binary the natural computational language.",
+    "topic": "Number Systems"
   },
   {
     "id": 14,
     "difficulty": "Easy",
-    "question": "The replacement of vacuum tubes with transistors marked the beginning of which generation?",
+    "question": "What is the term used for a single binary digit (either 0 or 1)?",
     "options": [
-      "First Generation",
-      "Second Generation",
-      "Third Generation",
-      "Fifth Generation"
+      "Byte",
+      "Bit",
+      "Nibble",
+      "Word"
     ],
     "answer": 1,
-    "explanation": "Second generation computers (1956-1963) replaced vacuum tubes with transistors, making machines smaller, faster, and more reliable, examples being IBM 1401 and IBM 7090.",
-    "topic": "Generations of Computers"
+    "explanation": "A 'Bit' is a single Binary Digit, either 0 or 1, and is the smallest unit of data in computing.",
+    "topic": "Number Systems"
   },
   {
     "id": 15,
-    "difficulty": "Easy",
-    "question": "Integrated Circuits (ICs) were introduced in which generation of computers?",
+    "difficulty": "Medium",
+    "question": "What is the decimal equivalent of the binary number 1010?",
     "options": [
-      "Second Generation",
-      "Third Generation",
-      "Fourth Generation",
-      "Fifth Generation"
+      "8",
+      "10",
+      "12",
+      "14"
     ],
     "answer": 1,
-    "explanation": "Third generation computers (1964-1971) used Integrated Circuits, which combined multiple transistors onto a single chip, examples being IBM 360 and PDP-8.",
-    "topic": "Generations of Computers"
+    "explanation": "The binary number 1010 equals 8 + 0 + 2 + 0 = 10 in the decimal system, since 1010 represents (1x2^3)+(0x2^2)+(1x2^1)+(0x2^0) = 8+0+2+0 = 10.",
+    "topic": "Number Systems"
   },
   {
     "id": 16,
-    "difficulty": "Easy",
-    "question": "The introduction of microprocessors, which led to computers becoming small enough for personal/home use, characterises which generation?",
+    "difficulty": "Medium",
+    "question": "For VRO-level exam preparation, which of the following is a key point to remember about number systems?",
     "options": [
-      "Third Generation",
-      "Fourth Generation",
-      "Fifth Generation",
-      "First Generation"
+      "Deep binary arithmetic is essential and heavily tested",
+      "Basic conversion logic and terms like 'Bit' and 'Byte' are frequently tested rather than deep arithmetic",
+      "Number systems are not part of the syllabus at all",
+      "Only hexadecimal conversions are tested"
     ],
     "answer": 1,
-    "explanation": "Fourth generation computers (1971-present) use microprocessors, which enabled the shift from room-sized machines to lap-sized personal computers like the Apple II and IBM PC.",
-    "topic": "Generations of Computers"
+    "explanation": "For VRO-level exams, deep binary arithmetic mastery is not required; instead, basic conversion logic and foundational terms like Bit and Byte are more frequently and practically tested.",
+    "topic": "Number Systems Networking and Internet"
   },
   {
     "id": 17,
     "difficulty": "Easy",
-    "question": "Fifth generation computers, which include systems like IBM Watson and ChatGPT-type AI systems, are primarily based on which technology?",
+    "question": "A computer network is best defined as:",
     "options": [
-      "Vacuum Tubes",
-      "Transistors",
-      "Integrated Circuits",
-      "Artificial Intelligence"
+      "A single computer with high processing power",
+      "A group of two or more computers linked together to share data, resources, and communication",
+      "A type of software used to browse the internet",
+      "A device used to store data permanently"
     ],
-    "answer": 3,
-    "explanation": "Fifth generation computers are based on Artificial Intelligence technology, representing the present and future direction of computing that focuses on machine learning and intelligent systems.",
-    "topic": "Generations of Computers"
+    "answer": 1,
+    "explanation": "A computer network is a group of two or more computers linked together to share data, resources such as printers, and enable communication between them.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 18,
     "difficulty": "Easy",
-    "question": "The mnemonic 'V-T-I-M-A' helps students remember the five generations of computers in the order:",
+    "question": "Which type of network covers a small area such as an office or a single school building?",
     "options": [
-      "Vacuum tubes, Transistors, ICs, Microprocessors, AI",
-      "Versatility, Transistors, Integration, Memory, Accuracy",
-      "Vacuum tubes, Time-sharing, ICs, Memory, AI",
-      "Voltage, Transistors, Integration, Miniaturisation, Automation"
+      "WAN",
+      "MAN",
+      "LAN",
+      "PAN"
     ],
-    "answer": 0,
-    "explanation": "The mnemonic V-T-I-M-A corresponds to the five generations in sequence: Vacuum tubes, Transistors, Integrated Circuits, Microprocessors, and Artificial Intelligence.",
-    "topic": "Generations of Computers"
+    "answer": 2,
+    "explanation": "LAN (Local Area Network) covers a small area such as an office or a school building, exemplified by a computer lab network.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 19,
-    "difficulty": "Medium",
-    "question": "Why did first generation computers generate a large amount of heat and consume enormous electricity?",
+    "difficulty": "Easy",
+    "question": "Which network type covers an entire city, such as a city's cable TV network?",
     "options": [
-      "Because of the use of microprocessors",
-      "Because of the use of vacuum tubes",
-      "Because of the use of transistors",
-      "Because of the use of Integrated Circuits"
+      "LAN",
+      "MAN",
+      "WAN",
+      "PAN"
     ],
     "answer": 1,
-    "explanation": "Vacuum tubes, used in first generation computers, generated significant heat and consumed large amounts of electricity, making these machines bulky and expensive to run.",
-    "topic": "Generations of Computers"
+    "explanation": "MAN (Metropolitan Area Network) covers a city-wide area, with a city's cable TV network being a common example.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 20,
     "difficulty": "Easy",
-    "question": "ENIAC and UNIVAC are examples of which generation of computers?",
+    "question": "The Internet itself is considered an example of which type of network?",
     "options": [
-      "First Generation",
-      "Second Generation",
-      "Third Generation",
-      "Fourth Generation"
+      "LAN",
+      "PAN",
+      "WAN",
+      "MAN"
     ],
-    "answer": 0,
-    "explanation": "ENIAC and UNIVAC were among the earliest electronic computers, built using vacuum tube technology, representing the First Generation of computers.",
-    "topic": "Generations of Computers"
+    "answer": 2,
+    "explanation": "WAN (Wide Area Network) covers a country or the globe, and the Internet itself is the largest and most well-known example of a WAN.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 21,
-    "difficulty": "Medium",
-    "question": "Which generation of computers is associated with the shift from room-sized machines to lap-sized machines that we use today?",
+    "difficulty": "Easy",
+    "question": "A Bluetooth connection between a phone and earphones is an example of which type of network?",
     "options": [
-      "First Generation",
-      "Second Generation",
-      "Third Generation",
-      "Fourth Generation"
+      "LAN",
+      "PAN",
+      "MAN",
+      "WAN"
     ],
-    "answer": 3,
-    "explanation": "The introduction of microprocessors in the Fourth Generation dramatically reduced the size of computers, moving from room-sized mainframes to compact, lap-sized personal computers.",
-    "topic": "Generations of Computers"
+    "answer": 1,
+    "explanation": "PAN (Personal Area Network) covers a very short range around a person, and a Bluetooth connection between a phone and earphones is a classic example.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 22,
-    "difficulty": "Easy",
-    "question": "IBM 1401 and IBM 7090 are examples associated with which generation of computers?",
+    "difficulty": "Medium",
+    "question": "Arrange the following network types in increasing order of coverage area: LAN, MAN, PAN, WAN.",
     "options": [
-      "First Generation (Vacuum Tubes)",
-      "Second Generation (Transistors)",
-      "Third Generation (Integrated Circuits)",
-      "Fourth Generation (Microprocessors)"
+      "LAN < PAN < MAN < WAN",
+      "PAN < LAN < MAN < WAN",
+      "MAN < LAN < PAN < WAN",
+      "WAN < MAN < LAN < PAN"
     ],
     "answer": 1,
-    "explanation": "IBM 1401 and IBM 7090 are Second Generation computers that used transistors instead of vacuum tubes, making them smaller and more energy-efficient than their predecessors.",
-    "topic": "Generations of Computers"
+    "explanation": "The correct order of increasing coverage area is PAN < LAN < MAN < WAN, as remembered by the mnemonic comparing a small cooking pan to the worldwide WAN.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 23,
-    "difficulty": "Medium",
-    "question": "Which of the following correctly lists the time period of Third Generation computers?",
+    "difficulty": "Easy",
+    "question": "The Internet is best defined as:",
     "options": [
-      "1940-1956",
-      "1956-1963",
-      "1964-1971",
-      "1971-present"
+      "A single website providing information",
+      "A global network of interconnected computer networks communicating via common protocols like TCP/IP",
+      "A type of application software",
+      "A device used to connect a printer to a computer"
     ],
-    "answer": 2,
-    "explanation": "Third Generation computers span the period 1964 to 1971 and are characterised by the use of Integrated Circuits, examples being IBM 360 and PDP-8.",
-    "topic": "Generations of Computers"
+    "answer": 1,
+    "explanation": "The Internet is a global network of interconnected computer networks that communicate using a common set of rules called protocols, primarily TCP/IP.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 24,
-    "difficulty": "Medium",
-    "question": "A key distinguishing feature between Fourth and Fifth generation computers is:",
+    "difficulty": "Easy",
+    "question": "Who is credited with inventing the World Wide Web (WWW)?",
     "options": [
-      "Fourth generation uses vacuum tubes while Fifth uses transistors",
-      "Fourth generation uses microprocessors while Fifth generation focuses on Artificial Intelligence",
-      "Fourth generation is the current generation while Fifth generation is now obsolete",
-      "There is no difference between the two"
+      "Bill Gates",
+      "Tim Berners-Lee",
+      "Steve Jobs",
+      "Mark Zuckerberg"
     ],
     "answer": 1,
-    "explanation": "Fourth generation computers are built on microprocessor technology, while Fifth generation computers focus on Artificial Intelligence-driven systems for advanced, intelligent processing.",
-    "topic": "Generations of Computers"
+    "explanation": "The World Wide Web (WWW) was invented by Tim Berners-Lee in 1989 as a system of interlinked web pages accessible via the internet.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 25,
     "difficulty": "Easy",
-    "question": "Apple II and IBM PC are examples of computers from which generation?",
+    "question": "In which year was the World Wide Web (WWW) invented?",
     "options": [
-      "Second Generation",
-      "Third Generation",
-      "Fourth Generation",
-      "Fifth Generation"
+      "1969",
+      "1989",
+      "1995",
+      "2000"
     ],
-    "answer": 2,
-    "explanation": "Apple II and IBM PC are examples of Fourth Generation computers, which are based on microprocessor technology and became widely used as personal computers.",
-    "topic": "Generations of Computers"
+    "answer": 1,
+    "explanation": "The World Wide Web was invented in 1989 by Tim Berners-Lee, establishing a system of interlinked documents accessible over the internet.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 26,
     "difficulty": "Hard",
-    "question": "Which statement about the evolution of computer generations is correct?",
+    "question": "Which of the following statements correctly distinguishes the Internet from the WWW?",
     "options": [
-      "Each generation used the same core technology as the previous one",
-      "The evolution moved from bulky, high-power vacuum tube machines to compact, intelligent microprocessor and AI-based systems",
-      "Fifth generation computers reverted to using vacuum tubes for reliability",
-      "Second generation computers were the first to use microprocessors"
+      "The Internet and WWW are exactly the same thing",
+      "The Internet is the physical/technical network infrastructure, while WWW is a service (linked web pages) that runs on top of it",
+      "WWW is the physical infrastructure, while the Internet is a service running on top of it",
+      "Neither the Internet nor WWW involves any networking"
     ],
     "answer": 1,
-    "explanation": "The generational evolution reflects a clear technological progression from large, power-hungry vacuum tube machines to compact, efficient microprocessor-based systems, and now toward AI-driven Fifth Generation systems.",
-    "topic": "Generations of Computers"
+    "explanation": "This is a classic APPSC trap question: the Internet refers to the underlying physical/technical network infrastructure, while WWW is a service built on top of the Internet, consisting of linked documents (web pages).",
+    "topic": "Networking and Internet"
   },
   {
     "id": 27,
     "difficulty": "Easy",
-    "question": "Which type of computer is used for extremely complex scientific calculations and offers the highest processing speed?",
+    "question": "URL stands for:",
     "options": [
-      "Microcomputer",
-      "Minicomputer",
-      "Supercomputer",
-      "Mainframe Computer"
+      "Universal Resource Locator",
+      "Uniform Resource Locator",
+      "Unique Reference Link",
+      "Universal Reference Locator"
     ],
-    "answer": 2,
-    "explanation": "Supercomputers, such as PARAM (India) and CRAY, offer extremely high processing speed and are used for complex scientific and research calculations.",
-    "topic": "Types of Computers"
+    "answer": 1,
+    "explanation": "URL stands for Uniform Resource Locator, which serves as the address of a webpage on the internet.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 28,
-    "difficulty": "Medium",
-    "question": "Which organisation developed India's PARAM series of supercomputers?",
+    "difficulty": "Easy",
+    "question": "What does the 'S' in HTTPS signify?",
     "options": [
-      "ISRO",
-      "C-DAC, Pune",
-      "IIT Delhi",
-      "BARC"
+      "Speed",
+      "Software",
+      "Secure (encrypted communication)",
+      "Server"
     ],
-    "answer": 1,
-    "explanation": "The PARAM series of supercomputers was developed by C-DAC (Centre for Development of Advanced Computing), Pune, under India's supercomputing programme.",
-    "topic": "Types of Computers"
+    "answer": 2,
+    "explanation": "The 'S' in HTTPS stands for Secure, indicating that the communication between the browser and the website is encrypted, unlike plain HTTP.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 29,
     "difficulty": "Easy",
-    "question": "Large organisations like banks and railways, which need to process bulk data, typically use which type of computer?",
+    "question": "An ISP (Internet Service Provider) is best described as:",
     "options": [
-      "Microcomputer",
-      "Mainframe Computer",
-      "Minicomputer",
-      "Supercomputer"
+      "A device that connects computers within a LAN",
+      "A company that provides internet access to users, such as BSNL, Jio, or Airtel",
+      "A type of web browser",
+      "A protocol used for secure data transfer"
     ],
     "answer": 1,
-    "explanation": "Mainframe computers, such as the IBM zSeries, are large systems used by big organisations like banks and railways for bulk data processing.",
-    "topic": "Types of Computers"
+    "explanation": "An ISP (Internet Service Provider) is a company such as BSNL, Jio, or Airtel that provides internet access to individuals and organisations.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 30,
     "difficulty": "Easy",
-    "question": "A Minicomputer is best described as a computer that is:",
+    "question": "An IP Address is best described as:",
     "options": [
-      "Extremely large and used only for scientific research",
-      "Mid-sized, typically used by small or medium businesses",
-      "The smallest type of computer used for personal computing",
-      "Used exclusively for supercomputing tasks"
+      "The name of a website that is easy to remember",
+      "A unique numerical address assigned to every device on a network",
+      "A type of internet browser",
+      "A security protocol for encrypting data"
     ],
     "answer": 1,
-    "explanation": "Minicomputers, such as the PDP-11, are mid-sized computers used by small and medium businesses, positioned between mainframes and microcomputers in scale.",
-    "topic": "Types of Computers"
+    "explanation": "An IP Address is a unique numerical address assigned to every device connected to a network, enabling identification and communication between devices.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 31,
-    "difficulty": "Easy",
-    "question": "The personal computer that we use daily, such as a desktop or laptop, is classified as a:",
+    "difficulty": "Medium",
+    "question": "A Domain Name, such as ap.gov.in, is used primarily to:",
     "options": [
-      "Mainframe Computer",
-      "Supercomputer",
-      "Microcomputer",
-      "Minicomputer"
+      "Replace the need for an IP address entirely at the hardware level",
+      "Provide an easy-to-remember website name instead of a numerical IP address",
+      "Encrypt data during transmission",
+      "Convert digital signals to analog signals"
     ],
-    "answer": 2,
-    "explanation": "A Microcomputer, commonly known as a Personal Computer (PC), includes desktops and laptops used for everyday personal and office tasks.",
-    "topic": "Types of Computers"
+    "answer": 1,
+    "explanation": "A Domain Name provides an easy-to-remember alternative to a numerical IP address, making websites more accessible to users, such as ap.gov.in.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 32,
     "difficulty": "Medium",
-    "question": "India's National Supercomputing Mission (NSM) is most closely associated with which type of computer?",
+    "question": "Which device converts digital signals to analog signals and vice versa for internet connectivity?",
     "options": [
-      "Minicomputer",
-      "Microcomputer",
-      "Supercomputer",
-      "Mainframe Computer"
+      "Router",
+      "Modem",
+      "Switch",
+      "Repeater"
     ],
-    "answer": 2,
-    "explanation": "The National Supercomputing Mission (NSM) is India's programme aimed at developing and deploying supercomputers like the PARAM series for scientific and research use.",
-    "topic": "Types of Computers"
+    "answer": 1,
+    "explanation": "A Modem converts digital signals from a computer into analog signals for transmission over telephone lines, and vice versa, enabling internet connectivity.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 33,
     "difficulty": "Medium",
-    "question": "Which of the following is an example of a Mainframe Computer?",
+    "question": "Which device is primarily responsible for directing data packets between different networks?",
     "options": [
-      "PARAM",
-      "IBM zSeries",
-      "PDP-11",
-      "Apple II"
+      "Modem",
+      "Router",
+      "Scanner",
+      "Monitor"
     ],
     "answer": 1,
-    "explanation": "IBM zSeries is a well-known example of a Mainframe Computer, used by large organisations for high-volume, bulk data processing.",
-    "topic": "Types of Computers"
+    "explanation": "A Router directs data packets between different networks, ensuring data reaches its correct destination across interconnected networks.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 34,
-    "difficulty": "Hard",
-    "question": "Why are AP e-Governance systems conceptually linked to mainframe-level processing?",
+    "difficulty": "Medium",
+    "question": "Which type of internet connection uses light signals through glass fibers and is considered the fastest among common options?",
     "options": [
-      "Because they run entirely on supercomputers",
-      "Because they rely on large server infrastructure similar to mainframe-level processing for bulk citizen data",
-      "Because they use only microcomputers",
-      "Because they do not process large volumes of data"
+      "Dial-Up",
+      "Mobile Data",
+      "Fiber Optic",
+      "Wi-Fi"
     ],
-    "answer": 1,
-    "explanation": "AP's e-Governance systems rely on large server infrastructure conceptually similar to mainframe-level processing, given the scale of citizen data they must handle across the state.",
-    "topic": "Types of Computers"
+    "answer": 2,
+    "explanation": "Fiber Optic connections use light signals transmitted through glass fibers, making them the fastest among the commonly available internet connection types.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 35,
     "difficulty": "Easy",
-    "question": "Which term refers to the physical, touchable parts of a computer?",
+    "question": "Which of the following is the oldest and slowest type of internet connection, using a telephone line?",
     "options": [
-      "Software",
-      "Hardware",
-      "Firmware",
-      "Middleware"
+      "Broadband",
+      "Dial-Up",
+      "Fiber Optic",
+      "Wi-Fi"
     ],
     "answer": 1,
-    "explanation": "Hardware refers to all the physical, touchable components of a computer such as the CPU, keyboard, monitor, and hard disk.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "Dial-Up is an old internet connection type that uses a telephone line and is significantly slower than modern alternatives like broadband and fiber optic.",
+    "topic": "Networking and Internet"
   },
   {
     "id": 36,
     "difficulty": "Easy",
-    "question": "Which unit is often called the 'brain of the computer'?",
+    "question": "Which of the following best describes a Search Engine?",
     "options": [
-      "Input Unit",
-      "Output Unit",
-      "CPU (Central Processing Unit)",
-      "Storage Unit"
+      "A device used to connect a printer",
+      "A tool used to search for information on the web, such as Google or Bing",
+      "A protocol used to secure email transmission",
+      "A type of network topology"
     ],
-    "answer": 2,
-    "explanation": "The CPU (Central Processing Unit) is called the brain of the computer because it carries out all processing, calculation, and control functions.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 1,
+    "explanation": "A Search Engine is a tool used to search for information on the web; Google and Bing are common examples used to locate content across websites.",
+    "topic": "Networking and Internet MS Office Suite"
   },
   {
     "id": 37,
     "difficulty": "Easy",
-    "question": "Which of the following is NOT a main part of the CPU?",
+    "question": "MS Word is primarily used for:",
     "options": [
-      "ALU",
-      "Control Unit",
-      "Memory Unit (Registers)",
-      "Scanner"
+      "Creating spreadsheets for numerical data",
+      "Creating, editing, and formatting text documents like letters and reports",
+      "Creating slideshows for presentations",
+      "Managing databases"
     ],
-    "answer": 3,
-    "explanation": "The CPU consists of the ALU, Control Unit, and Memory Unit (Registers). A Scanner is an input device, not part of the CPU.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 1,
+    "explanation": "MS Word is a word processing application used for creating, editing, and formatting text documents such as letters, reports, and notices.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 38,
-    "difficulty": "Easy",
-    "question": "Which part of the CPU performs all mathematical calculations and logical comparisons?",
+    "difficulty": "Medium",
+    "question": "Which MS Word feature is used for sending personalised letters to multiple recipients using a data source?",
     "options": [
-      "Control Unit (CU)",
-      "Arithmetic Logic Unit (ALU)",
-      "Registers",
-      "RAM"
+      "Spell Check",
+      "Mail Merge",
+      "Page Layout",
+      "Insert Tab"
     ],
     "answer": 1,
-    "explanation": "The Arithmetic Logic Unit (ALU) is responsible for performing mathematical operations like addition and subtraction, as well as logical comparisons like greater than or less than.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "Mail Merge is an MS Word feature that allows sending personalised letters to multiple recipients by combining a document template with a data source, useful for sending notices to multiple villagers.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 39,
     "difficulty": "Easy",
-    "question": "In the CPU, which unit acts like a 'traffic police officer', directing and coordinating all internal activities?",
+    "question": "In MS Word, which tab would you use to insert tables, pictures, and headers/footers into a document?",
     "options": [
-      "ALU",
-      "Control Unit (CU)",
-      "Memory Unit",
-      "ROM"
+      "Home Tab",
+      "Insert Tab",
+      "Page Layout Tab",
+      "Review Tab"
     ],
     "answer": 1,
-    "explanation": "The Control Unit (CU) coordinates and directs all activities inside the computer, telling other units what to do and when, similar to a traffic police officer managing traffic flow.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "The Insert Tab in MS Word is used to insert elements such as tables, pictures, and headers/footers into a document.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 40,
-    "difficulty": "Medium",
-    "question": "Registers, the tiny and very fast storage locations inside the CPU, are used to:",
+    "difficulty": "Easy",
+    "question": "Which MS Word feature automatically detects and corrects grammar and spelling errors in a document?",
     "options": [
-      "Permanently store large files",
-      "Hold data currently being processed",
-      "Connect to the internet",
-      "Display output on the monitor"
+      "Mail Merge",
+      "Spell Check",
+      "Page Layout",
+      "Insert Tab"
     ],
     "answer": 1,
-    "explanation": "Registers are extremely fast, small storage locations within the CPU that hold data currently being processed, enabling quick access during calculations.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "The Spell Check feature in MS Word automatically detects and helps correct spelling and grammar errors as a user types a document.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 41,
-    "difficulty": "Medium",
-    "question": "In the kitchen analogy for CPU components, who represents the 'head chef' giving instructions on what to cook and in what order?",
+    "difficulty": "Easy",
+    "question": "Which MS Word tab allows you to adjust margins, page orientation, and page size?",
     "options": [
-      "ALU",
-      "Control Unit (CU)",
-      "Registers",
-      "RAM"
+      "Home Tab",
+      "Insert Tab",
+      "Page Layout Tab",
+      "View Tab"
     ],
-    "answer": 1,
-    "explanation": "In the analogy, the Control Unit is the head chef who gives instructions on what to do and in what sequence, similar to how it coordinates operations inside the CPU.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 2,
+    "explanation": "The Page Layout Tab in MS Word provides options to adjust margins, orientation (portrait/landscape), and page size for a document.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 42,
-    "difficulty": "Easy",
-    "question": "Which of the following devices is used to convert paper documents into digital images?",
+    "difficulty": "Medium",
+    "question": "MS Excel is primarily useful for VROs for which of the following tasks?",
     "options": [
-      "Scanner",
-      "Joystick",
-      "Printer",
-      "Speaker"
+      "Creating presentations for training sessions",
+      "Maintaining land records and numerical revenue data through spreadsheets",
+      "Writing formal letters to villagers",
+      "Scanning paper documents"
     ],
-    "answer": 0,
-    "explanation": "A scanner is an input device that converts physical paper documents into digital image formats that a computer can process and store.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 1,
+    "explanation": "MS Excel is used for creating spreadsheets, which is particularly useful for VROs while maintaining land records, revenue data, and numerical reports.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 43,
-    "difficulty": "Medium",
-    "question": "For Aadhaar-based authentication and e-KYC verification relevant to VRO duties, which input device is primarily used?",
+    "difficulty": "Easy",
+    "question": "In MS Excel, the intersection of a row and a column is called a:",
     "options": [
-      "Joystick",
-      "Biometric Scanner (Fingerprint/Iris)",
-      "OMR",
-      "Bar Code Reader"
+      "Sheet",
+      "Cell",
+      "Formula",
+      "Chart"
     ],
     "answer": 1,
-    "explanation": "Biometric Scanners, which capture fingerprint or iris data, are used for Aadhaar-based authentication and e-KYC verification, directly relevant to VRO duties like Meebhoomi verification.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "A Cell is the basic unit of a spreadsheet in MS Excel, formed at the intersection of a row and a column.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 44,
     "difficulty": "Easy",
-    "question": "An OMR (Optical Mark Reader) is primarily used for:",
+    "question": "Which MS Excel function is used to add numbers within a specified range?",
     "options": [
-      "Reading barcodes in ration shops",
-      "Reading marked answer sheets in examinations",
-      "Converting sound into digital signals",
-      "Capturing live video"
+      "AVERAGE()",
+      "SUM()",
+      "SORT()",
+      "FILTER()"
     ],
     "answer": 1,
-    "explanation": "An OMR (Optical Mark Reader) reads marked answer sheets, such as those used in competitive examinations, by detecting the position of marks made by candidates.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "The SUM() function in MS Excel is used to add all numbers within a specified range of cells.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 45,
     "difficulty": "Easy",
-    "question": "A Bar Code Reader is commonly used in which of the following contexts?",
+    "question": "Which MS Excel function is used to calculate the mean value of a set of numbers?",
     "options": [
-      "Gaming",
-      "PDS ration shops and billing",
-      "Video conferencing",
-      "Land survey mapping"
+      "SUM()",
+      "AVERAGE()",
+      "COUNT()",
+      "MAX()"
     ],
     "answer": 1,
-    "explanation": "Bar Code Readers are commonly used in billing systems and PDS (Public Distribution System) ration shops to quickly read product or item codes.",
-    "topic": "Computer Organisation and Hardware"
+    "explanation": "The AVERAGE() function in MS Excel calculates the mean (average) value of a specified range of numbers.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 46,
     "difficulty": "Medium",
-    "question": "Which output device is most useful for printing large-scale drawings or maps, making it relevant to land survey work?",
+    "question": "A VRO maintaining land revenue collection data for 50 villages wants to arrange villages by the highest collection amount. Which MS Excel feature should be used?",
     "options": [
-      "Plotter",
-      "Dot Matrix Printer",
-      "Speaker",
-      "Monitor"
+      "Mail Merge",
+      "Sorting",
+      "Spell Check",
+      "Slide Show"
     ],
-    "answer": 0,
-    "explanation": "A Plotter is used for printing large-scale drawings and maps, which is particularly relevant to land survey work carried out by VROs.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 1,
+    "explanation": "Sorting in MS Excel allows data to be arranged based on specified criteria, such as arranging villages by collection amount from highest to lowest.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 47,
     "difficulty": "Easy",
-    "question": "Which type of printer uses toner and a laser beam, offering fast speed and very high print quality?",
+    "question": "Where in MS Excel are formulas and functions typically typed for a selected cell?",
     "options": [
-      "Dot Matrix Printer",
-      "Inkjet Printer",
-      "Laser Printer",
-      "Thermal Printer"
+      "Status Bar",
+      "Formula Bar",
+      "Ribbon",
+      "Title Bar"
     ],
-    "answer": 2,
-    "explanation": "Laser Printers use toner and a laser beam to produce output, offering fast printing speed and very high quality, making them suitable for bulk office printing.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 1,
+    "explanation": "The Formula Bar in MS Excel is where formulas and functions are typed and displayed for the currently selected cell.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 48,
-    "difficulty": "Medium",
-    "question": "Which printer type is commonly used for multi-copy bills in government offices due to its impact-based technology?",
+    "difficulty": "Easy",
+    "question": "MS PowerPoint is primarily used for:",
     "options": [
-      "Laser Printer",
-      "Inkjet Printer",
-      "Dot Matrix Printer",
-      "3D Printer"
+      "Maintaining numerical land revenue data",
+      "Creating presentations and slideshows for training or reporting",
+      "Editing scanned images",
+      "Managing email communication"
     ],
-    "answer": 2,
-    "explanation": "Dot Matrix Printers use impact technology, where pins strike a ribbon, allowing them to produce multi-copy bills common in government offices, though at slower speed and lower quality.",
-    "topic": "Computer Organisation and Hardware"
+    "answer": 1,
+    "explanation": "MS PowerPoint is used for creating presentations and slideshows, useful for departmental training sessions or reporting to higher officials.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 49,
     "difficulty": "Easy",
-    "question": "Which input device is primarily used for typing text and issuing commands to a computer?",
+    "question": "In MS PowerPoint, which feature refers to the visual effects that occur between slides?",
     "options": [
-      "Mouse",
-      "Keyboard",
-      "Joystick",
-      "Webcam"
+      "Animations",
+      "Transitions",
+      "Slide Layout",
+      "Slide Show"
     ],
     "answer": 1,
-    "explanation": "The keyboard is the primary input device used for typing text and entering commands into a computer system.",
-    "topic": "Input Devices"
+    "explanation": "Transitions in MS PowerPoint refer to the visual effects applied when moving from one slide to the next during a presentation.",
+    "topic": "MS Office Suite"
   },
   {
     "id": 50,
-    "difficulty": "Easy",
-    "question": "Which input device is mainly used for pointing and clicking on graphical elements of a screen?",
+    "difficulty": "Medium",
+    "question": "In MS PowerPoint, which feature adds movement effects to individual elements within a single slide?",
     "options": [
-      "Keyboard",
-      "Mouse",
-      "Microphone",
-      "Scanner"
+      "Transitions",
+      "Slide Show",
+      "Animations",
+      "Slide Layout"
     ],
-    "answer": 1,
-    "explanation": "The mouse is an input device used for pointing at and clicking on graphical elements, enabling navigation within a graphical user interface.",
-    "topic": "Input Devices"
+    "answer": 2,
+    "explanation": "Animations in MS PowerPoint add movement effects to individual elements, such as text or images, within a single slide, distinct from Transitions which apply between slides.",
+    "topic": "MS Office Suite Cyber Security and Digital Safety"
   },
   {
     "id": 51,
     "difficulty": "Easy",
-    "question": "Which device converts sound into a digital signal for input into a computer?",
+    "question": "Which malicious program attaches itself to files and spreads while damaging data?",
     "options": [
-      "Speaker",
-      "Microphone",
-      "Webcam",
-      "Plotter"
+      "Worm",
+      "Virus",
+      "Trojan Horse",
+      "Spyware"
     ],
     "answer": 1,
-    "explanation": "A microphone converts sound waves into digital signals that a computer can process, store, or transmit, functioning as an audio input device.",
-    "topic": "Input Devices"
+    "explanation": "A Virus is a malicious program that attaches itself to files and spreads to other files or systems, causing damage to data.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 52,
-    "difficulty": "Easy",
-    "question": "A Webcam is primarily used to:",
+    "difficulty": "Medium",
+    "question": "Which type of malware is self-replicating and spreads across networks without needing a host file?",
     "options": [
-      "Capture live video",
-      "Print documents",
-      "Scan paper documents",
-      "Read barcodes"
+      "Virus",
+      "Worm",
+      "Trojan Horse",
+      "Ransomware"
     ],
-    "answer": 0,
-    "explanation": "A webcam is an input device used to capture live video, commonly used for video conferencing and online communication.",
-    "topic": "Input Devices"
+    "answer": 1,
+    "explanation": "A Worm is a self-replicating malware that spreads across networks independently, without requiring a host file to attach to, unlike a virus.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 53,
     "difficulty": "Easy",
-    "question": "Which input device is typically used in gaming applications?",
+    "question": "Malware disguised as legitimate software to trick users into installing it is known as:",
     "options": [
-      "Joystick",
-      "OMR",
-      "Bar Code Reader",
-      "Scanner"
+      "Worm",
+      "Spyware",
+      "Trojan Horse",
+      "Ransomware"
     ],
-    "answer": 0,
-    "explanation": "A joystick is an input device primarily designed for controlling movement and actions in gaming applications.",
-    "topic": "Input Devices"
+    "answer": 2,
+    "explanation": "A Trojan Horse is malware that disguises itself as legitimate software, tricking users into installing it, after which it can perform malicious activities.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 54,
     "difficulty": "Easy",
-    "question": "Input devices are best defined as devices that:",
+    "question": "Fraudulent attempts to obtain sensitive information like passwords or OTPs by pretending to be a trustworthy source is called:",
     "options": [
-      "Display processed results to the user",
-      "Allow data and instructions to be entered into a computer",
-      "Store data permanently",
-      "Perform calculations on data"
+      "Hacking",
+      "Phishing",
+      "Spyware",
+      "Worm"
     ],
     "answer": 1,
-    "explanation": "Input devices allow users to enter data and instructions into a computer system so that it can be processed further.",
-    "topic": "Input Devices"
+    "explanation": "Phishing is a fraudulent technique used to obtain sensitive information such as passwords or OTPs by impersonating a trustworthy source via fake emails, SMS, or websites.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 55,
     "difficulty": "Easy",
-    "question": "Which of the following is an example of a biometric input device?",
+    "question": "Which type of malware secretly monitors user activity and steals information without the user's knowledge?",
     "options": [
-      "Fingerprint Scanner",
-      "Dot Matrix Printer",
-      "Plotter",
-      "Speaker"
+      "Ransomware",
+      "Spyware",
+      "Worm",
+      "Trojan Horse"
     ],
-    "answer": 0,
-    "explanation": "A Fingerprint Scanner is a biometric input device that captures unique physical characteristics for identity verification, widely used in Aadhaar-linked e-KYC processes.",
-    "topic": "Input Devices"
+    "answer": 1,
+    "explanation": "Spyware is malware that secretly monitors a user's activity and steals information, often operating covertly in the background.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 56,
-    "difficulty": "Medium",
-    "question": "Which input device would be most useful for a government office needing to digitise old paper land records?",
+    "difficulty": "Easy",
+    "question": "Which type of malware locks or encrypts a user's data and demands payment for its release?",
     "options": [
-      "Joystick",
-      "Scanner",
-      "Speaker",
-      "Plotter"
+      "Ransomware",
+      "Spyware",
+      "Virus",
+      "Worm"
     ],
-    "answer": 1,
-    "explanation": "A Scanner converts paper documents, such as old land records, into digital images, making it the most suitable input device for digitisation efforts.",
-    "topic": "Input Devices"
+    "answer": 0,
+    "explanation": "Ransomware locks or encrypts a user's data and demands a ransom payment in exchange for restoring access to that data.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 57,
-    "difficulty": "Medium",
-    "question": "Which of the following statements about input devices is correct?",
+    "difficulty": "Easy",
+    "question": "Unauthorised access to computer systems or data is referred to as:",
     "options": [
-      "Input devices only work with text-based data",
-      "Input devices can capture text, images, sound, and video depending on the device type",
-      "Input devices cannot be used with biometric data",
-      "All input devices produce printed output"
+      "Phishing",
+      "Hacking",
+      "Spyware",
+      "Ransomware"
     ],
     "answer": 1,
-    "explanation": "Input devices are varied and can capture different forms of data, including text via keyboard, images via scanner, sound via microphone, and video via webcam.",
-    "topic": "Input Devices"
+    "explanation": "Hacking refers to gaining unauthorised access to computer systems or data, often bypassing security measures.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 58,
     "difficulty": "Medium",
-    "question": "Bar Code Readers used in PDS ration shops function primarily as:",
+    "question": "The mnemonic 'Six Cyber Villains' in the chapter refers to which set of threats?",
     "options": [
-      "Output devices for printing receipts",
-      "Input devices for reading coded product/item information",
-      "Storage devices for saving transaction data",
-      "Processing devices for calculating totals"
+      "Virus, Worm, Trojan, Phishing, Spyware, Ransomware",
+      "RAM, ROM, CPU, ALU, CU, Registers",
+      "LAN, MAN, WAN, PAN, ISP, IP",
+      "Windows, Linux, macOS, Android, iOS, Chrome"
     ],
-    "answer": 1,
-    "explanation": "Bar Code Readers are input devices that scan and read coded information printed on products, which is then processed by billing software.",
-    "topic": "Input Devices"
+    "answer": 0,
+    "explanation": "The 'Six Cyber Villains' mnemonic refers to the six common cyber threats covered in the chapter: Virus, Worm, Trojan, Phishing, Spyware, and Ransomware.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 59,
     "difficulty": "Easy",
-    "question": "Which of the following is the primary function of an output device?",
+    "question": "Which of the following is a recommended protective measure against cyber threats?",
     "options": [
-      "To accept data from the user",
-      "To display or produce processed results for the user",
-      "To store data permanently",
-      "To process raw data into information"
+      "Using the same simple password across all accounts",
+      "Enabling Two-Factor Authentication (2FA) wherever possible",
+      "Sharing OTPs with callers claiming to be bank officials",
+      "Disabling antivirus software to increase speed"
     ],
     "answer": 1,
-    "explanation": "Output devices display or produce the processed results of a computer for the user to see, hear, or use, such as monitors and printers.",
-    "topic": "Output Devices"
+    "explanation": "Enabling Two-Factor Authentication (2FA) wherever possible adds an extra layer of security beyond just a password, making unauthorised access significantly harder.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 60,
-    "difficulty": "Easy",
-    "question": "A Monitor is also referred to by which of the following terms?",
+    "difficulty": "Medium",
+    "question": "Why should users avoid clicking unknown links or downloading attachments from unknown senders?",
     "options": [
-      "CPU",
-      "VDU (Visual Display Unit)",
-      "ALU",
-      "ROM"
+      "It slows down internet speed",
+      "It may lead to malware infection or phishing attacks",
+      "It uses excessive data storage only",
+      "It has no security implications"
     ],
     "answer": 1,
-    "explanation": "A Monitor is also known as a VDU (Visual Display Unit) since it visually displays the processed output of a computer.",
-    "topic": "Output Devices"
+    "explanation": "Unknown links or attachments from unfamiliar senders often carry malware or lead to phishing sites designed to steal sensitive information.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 61,
-    "difficulty": "Easy",
-    "question": "Which output device produces sound as its result?",
+    "difficulty": "Medium",
+    "question": "Regularly updating an operating system and software is important mainly because updates:",
     "options": [
-      "Printer",
-      "Speaker",
-      "Plotter",
-      "Monitor"
+      "Make the device slower",
+      "Often include security patches that fix vulnerabilities",
+      "Are only cosmetic in nature",
+      "Are required only for gaming performance"
     ],
     "answer": 1,
-    "explanation": "A Speaker is an output device that converts digital audio signals into sound, allowing the user to hear the processed output.",
-    "topic": "Output Devices"
+    "explanation": "Regular updates often include security patches that fix known vulnerabilities, reducing the risk of exploitation by cyber attackers.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 62,
-    "difficulty": "Easy",
-    "question": "Which type of printer is best suited for producing high-quality colour prints at home or in offices?",
+    "difficulty": "Medium",
+    "question": "Which agency serves as India's national body for responding to cyber security incidents?",
     "options": [
-      "Dot Matrix Printer",
-      "Inkjet Printer",
-      "Impact Printer",
-      "OMR Printer"
+      "CERT-In",
+      "AP CSOC",
+      "IT Act, 2000",
+      "MyGov"
     ],
-    "answer": 1,
-    "explanation": "An Inkjet Printer sprays liquid ink to produce medium-speed but high-quality colour prints, making it ideal for home and office colour printing needs.",
-    "topic": "Output Devices"
+    "answer": 0,
+    "explanation": "CERT-In (Indian Computer Emergency Response Team) is the national agency responsible for responding to cyber security incidents across India.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 63,
-    "difficulty": "Medium",
-    "question": "Which output device would be most appropriate for printing large-scale land survey maps?",
+    "difficulty": "Easy",
+    "question": "Which online platform allows citizens to report cyber crimes in India?",
     "options": [
-      "Speaker",
-      "Plotter",
-      "Dot Matrix Printer",
-      "Monitor"
+      "cybercrime.gov.in",
+      "MyGov.in",
+      "UMANG App",
+      "DigiLocker"
     ],
-    "answer": 1,
-    "explanation": "A Plotter is specifically designed to print large-scale drawings and maps, making it the most appropriate device for land survey work.",
-    "topic": "Output Devices"
+    "answer": 0,
+    "explanation": "cybercrime.gov.in is the online platform provided by the Government of India for citizens to report cyber crimes.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 64,
-    "difficulty": "Medium",
-    "question": "Among Dot Matrix, Inkjet, and Laser printers, which one offers the fastest speed and highest print quality for bulk office printing?",
+    "difficulty": "Easy",
+    "question": "Which Indian law primarily governs cyber crime and electronic commerce?",
     "options": [
-      "Dot Matrix Printer",
-      "Inkjet Printer",
-      "Laser Printer",
-      "None of these"
+      "Digital Personal Data Protection Act, 2023",
+      "IT Act, 2000",
+      "Consumer Protection Act, 2019",
+      "RTI Act, 2005"
     ],
-    "answer": 2,
-    "explanation": "Laser Printers offer the fastest speed and highest print quality among the three, using toner and a laser beam, making them the best choice for bulk office printing.",
-    "topic": "Output Devices"
+    "answer": 1,
+    "explanation": "The IT Act, 2000 (and its amendments) is India's primary law dealing with cyber crime and electronic commerce.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 65,
     "difficulty": "Medium",
-    "question": "Why are Dot Matrix printers still used in some government offices despite being slower and of lower quality?",
+    "question": "Which Indian law specifically governs the protection of personal digital data?",
     "options": [
-      "They cannot print at all",
-      "They are useful for producing multi-copy bills using impact technology",
-      "They only work with digital documents",
-      "They are the fastest printers available"
+      "IT Act, 2000",
+      "Digital Personal Data Protection Act, 2023",
+      "Companies Act, 2013",
+      "Indian Penal Code"
     ],
     "answer": 1,
-    "explanation": "Dot Matrix printers use impact technology (pins striking a ribbon), which allows carbon-copy printing, making them useful for producing multi-copy bills in government offices.",
-    "topic": "Output Devices"
+    "explanation": "The Digital Personal Data Protection Act, 2023 is the Indian law specifically governing the protection of personal digital data.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 66,
-    "difficulty": "Easy",
-    "question": "Which of the following is an output device rather than an input device?",
+    "difficulty": "Medium",
+    "question": "Which dedicated body handles digital offences in Andhra Pradesh, reflecting the state's e-Governance security push?",
     "options": [
-      "Scanner",
-      "Microphone",
-      "Monitor",
-      "Joystick"
+      "AP Cyber Security Operations Centre (CSOC)",
+      "MyGov",
+      "UMANG",
+      "CERT-In"
     ],
-    "answer": 2,
-    "explanation": "A Monitor is an output device that displays processed results, whereas the Scanner, Microphone, and Joystick are input devices.",
-    "topic": "Output Devices"
+    "answer": 0,
+    "explanation": "Andhra Pradesh has its own AP Cyber Security Operations Centre (CSOC) and a dedicated Cyber Crime Wing under AP Police to handle digital offences.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 67,
-    "difficulty": "Easy",
-    "question": "Which category of printer technology sprays liquid ink onto paper to form images and text?",
+    "difficulty": "Hard",
+    "question": "Why should users avoid sharing OTPs, PINs, or passwords over phone or email, even if the requester claims to be from a bank?",
     "options": [
-      "Laser Printer",
-      "Inkjet Printer",
-      "Dot Matrix Printer",
-      "3D Printer"
+      "Because banks never need this information and legitimate institutions never ask for it, making such requests a common phishing tactic",
+      "Because sharing this information speeds up transactions",
+      "Because OTPs are not linked to any sensitive information",
+      "Because banks require OTP sharing for verification by phone"
     ],
-    "answer": 1,
-    "explanation": "Inkjet Printers use a technology where liquid ink is sprayed onto paper to form the desired text or image, offering high quality at medium speed.",
-    "topic": "Output Devices"
+    "answer": 0,
+    "explanation": "Legitimate banks and institutions never ask customers to share OTPs, PINs, or passwords over phone or email; such requests are a common tactic used in phishing scams.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 68,
     "difficulty": "Medium",
-    "question": "A Plotter differs from a regular printer mainly in that it is designed for:",
+    "question": "Using secure (HTTPS) websites is especially important during which type of activity?",
     "options": [
-      "Printing small text documents only",
-      "Printing large-scale drawings, blueprints, and maps",
-      "Producing only black-and-white output",
-      "Scanning physical documents"
+      "Casual web browsing for news only",
+      "Financial transactions involving sensitive personal or banking information",
+      "Watching non-interactive videos",
+      "Reading public government notices"
     ],
     "answer": 1,
-    "explanation": "Unlike regular printers designed for standard documents, a Plotter is specifically built for printing large-scale technical drawings, blueprints, and maps.",
-    "topic": "Output Devices"
+    "explanation": "HTTPS ensures encrypted communication, which is especially critical during financial transactions to protect sensitive personal and banking information from interception.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 69,
     "difficulty": "Easy",
-    "question": "Which type of memory is directly accessible by the CPU and is generally faster but more expensive?",
+    "question": "Which of the following combinations is recommended for creating a strong password?",
     "options": [
-      "Secondary Memory",
-      "Primary Memory",
-      "Optical Storage",
-      "Flash Storage"
+      "Only lowercase letters",
+      "A combination of letters, numbers, and special characters",
+      "Only the user's date of birth",
+      "A single common word"
     ],
     "answer": 1,
-    "explanation": "Primary Memory (RAM/ROM) is directly accessible by the CPU, offering very fast speed, though it is more expensive per unit compared to secondary memory.",
-    "topic": "Memory and Storage"
+    "explanation": "A strong password should combine letters, numbers, and special characters to make it significantly harder for attackers to guess or crack.",
+    "topic": "Cyber Security and Digital Safety"
   },
   {
     "id": 70,
     "difficulty": "Medium",
-    "question": "Which of the following is a characteristic of Secondary Memory?",
+    "question": "Which of the following best explains why installing genuine, updated antivirus software is recommended?",
     "options": [
-      "It is directly accessible by the CPU",
-      "It is volatile and loses data when power is switched off",
-      "Data must first be loaded into RAM before the CPU can access it",
-      "It is more expensive per unit than Primary Memory"
+      "It permanently prevents all internet slowdowns",
+      "It helps detect and remove malware such as viruses, worms, and trojans, and stays updated against newly emerging threats",
+      "It replaces the need for strong passwords entirely",
+      "It is only useful for protecting printers"
     ],
-    "answer": 2,
-    "explanation": "Secondary Memory is not directly accessible by the CPU; data stored in it must first be loaded into RAM before processing, unlike Primary Memory.",
-    "topic": "Memory and Storage"
+    "answer": 1,
+    "explanation": "Genuine, regularly updated antivirus software helps detect and remove malware like viruses, worms, and trojans, and stays current against newly emerging cyber threats through periodic updates.",
+    "topic": "Cyber Security and Digital Safety Digital India and AP E-Governance"
   },
   {
     "id": 71,
     "difficulty": "Easy",
-    "question": "RAM is described as 'volatile' because:",
+    "question": "In which year was the Digital India programme launched by the Government of India?",
     "options": [
-      "It is very expensive",
-      "Its data is lost when the computer is switched off",
-      "It can only be read, not written to",
-      "It stores data permanently"
+      "2010",
+      "2014",
+      "2015",
+      "2019"
     ],
-    "answer": 1,
-    "explanation": "RAM is volatile memory, meaning all data stored in it is lost as soon as the power supply to the computer is switched off.",
-    "topic": "Memory and Storage"
+    "answer": 2,
+    "explanation": "The Digital India programme was launched by the Government of India in 2015 to transform India into a digitally empowered society.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 72,
-    "difficulty": "Easy",
-    "question": "Which of the following best describes ROM?",
+    "difficulty": "Medium",
+    "question": "Which of the following is NOT one of the three core vision areas of the Digital India programme?",
     "options": [
-      "Temporary memory that is erased when power is off",
-      "Permanent, mostly Read-Only memory that stores firmware/BIOS instructions",
-      "A type of secondary storage device",
-      "A device used only for input operations"
+      "Digital Infrastructure as a core utility to every citizen",
+      "Governance and Services on Demand",
+      "Digital Empowerment of Citizens",
+      "Privatisation of all government services"
     ],
-    "answer": 1,
-    "explanation": "ROM (Read Only Memory) is non-volatile and mostly read-only, storing essential firmware or BIOS instructions needed to start the computer.",
-    "topic": "Memory and Storage"
+    "answer": 3,
+    "explanation": "The three core vision areas of Digital India are Digital Infrastructure as a core utility, Governance and Services on Demand, and Digital Empowerment of Citizens. Privatisation of services is not one of these vision areas.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 73,
-    "difficulty": "Medium",
-    "question": "Which of the following are types of RAM?",
+    "difficulty": "Easy",
+    "question": "Aadhaar is primarily used as a:",
     "options": [
-      "PROM and EPROM",
-      "SRAM and DRAM",
-      "EEPROM and Flash",
-      "BIOS and Firmware"
+      "Payment system for online transactions",
+      "Unique 12-digit identification number for residents used for identity verification",
+      "Cloud storage platform for documents",
+      "Mobile application for accessing multiple government services"
     ],
     "answer": 1,
-    "explanation": "RAM has two main types: SRAM (Static RAM) and DRAM (Dynamic RAM), both used as volatile primary memory in computers.",
-    "topic": "Memory and Storage"
+    "explanation": "Aadhaar is a unique 12-digit identification number issued to residents of India, primarily used for identity verification purposes.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 74,
-    "difficulty": "Medium",
-    "question": "Which of the following are types of ROM?",
+    "difficulty": "Easy",
+    "question": "Which platform allows citizens to store and access verified digital documents in the cloud?",
     "options": [
-      "SRAM and DRAM",
-      "Cache and Register",
-      "PROM, EPROM, and EEPROM",
-      "HDD and SSD"
+      "UMANG",
+      "DigiLocker",
+      "MyGov",
+      "CoWIN"
     ],
-    "answer": 2,
-    "explanation": "ROM has several types including PROM (Programmable ROM), EPROM (Erasable Programmable ROM), and EEPROM (Electrically Erasable Programmable ROM).",
-    "topic": "Memory and Storage"
+    "answer": 1,
+    "explanation": "DigiLocker is a cloud-based platform that allows citizens to store and access verified digital documents securely.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 75,
-    "difficulty": "Easy",
-    "question": "The memory trick 'RAM = Remember And Memorise temporarily' highlights which key property of RAM?",
+    "difficulty": "Medium",
+    "question": "UMANG stands for:",
     "options": [
-      "RAM stores data permanently",
-      "RAM is volatile and forgets data once power is switched off",
-      "RAM cannot be written to",
-      "RAM is a type of secondary storage"
+      "Unified Mobile Application for New-age Governance",
+      "Universal Mobile App for National Growth",
+      "Unified Model for Aadhaar and Networked Governance",
+      "Universal Mobile Access for National Government"
     ],
-    "answer": 1,
-    "explanation": "The mnemonic highlights that RAM temporarily holds data, similar to how we forget a dream once we wake up, i.e., data is erased once power is off.",
-    "topic": "Memory and Storage"
+    "answer": 0,
+    "explanation": "UMANG stands for Unified Mobile Application for New-age Governance, a single app providing access to multiple government services.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 76,
     "difficulty": "Easy",
-    "question": "How many bits make up one byte?",
+    "question": "UPI is best described as:",
     "options": [
-      "4 bits",
-      "8 bits",
-      "16 bits",
-      "32 bits"
+      "A cloud storage platform",
+      "A real-time digital payment system",
+      "A citizen engagement platform for policy participation",
+      "A vaccination registration platform"
     ],
     "answer": 1,
-    "explanation": "One byte is composed of 8 bits, which is a foundational unit of measurement in computer memory and data representation.",
-    "topic": "Memory and Storage"
+    "explanation": "UPI (Unified Payments Interface) is a real-time digital payment system that enables instant money transfers between bank accounts using mobile devices.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 77,
     "difficulty": "Easy",
-    "question": "1 Kilobyte (KB) is equal to how many bytes?",
+    "question": "Which platform served as a notable e-governance success case for COVID-19 vaccination registration?",
     "options": [
-      "100 Bytes",
-      "1000 Bytes",
-      "1024 Bytes",
-      "1024 Bits"
+      "MyGov",
+      "CoWIN",
+      "UMANG",
+      "DigiLocker"
     ],
-    "answer": 2,
-    "explanation": "In computer memory measurement, 1 Kilobyte (KB) is equal to 1024 Bytes, following the binary (base-2) counting system rather than the decimal system.",
-    "topic": "Memory and Storage"
+    "answer": 1,
+    "explanation": "CoWIN was the platform used for COVID-19 vaccination registration in India, widely regarded as a notable e-governance success case.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 78,
     "difficulty": "Easy",
-    "question": "1 Megabyte (MB) is equal to:",
+    "question": "Which platform allows citizens to engage with and participate in government policy discussions?",
     "options": [
-      "1000 KB",
-      "1024 KB",
-      "1024 MB",
-      "1000 Bytes"
+      "MyGov",
+      "UPI",
+      "CoWIN",
+      "Aadhaar"
     ],
-    "answer": 1,
-    "explanation": "1 Megabyte (MB) equals 1024 Kilobytes (KB), continuing the standard binary chain used for computer memory measurement.",
-    "topic": "Memory and Storage"
+    "answer": 0,
+    "explanation": "MyGov is a citizen engagement platform that allows people to participate in policy discussions and government initiatives.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 79,
     "difficulty": "Easy",
-    "question": "Which of the following correctly represents the memory unit hierarchy from smallest to largest?",
+    "question": "Which platform is described as AP's comprehensive e-governance platform integrating multiple departmental services on a single backbone?",
     "options": [
-      "GB, MB, KB, TB",
-      "KB, MB, GB, TB",
-      "TB, GB, MB, KB",
-      "MB, KB, TB, GB"
+      "Meebhoomi",
+      "e-Pragati",
+      "AP Online",
+      "Spandana"
     ],
     "answer": 1,
-    "explanation": "The correct hierarchy from smallest to largest is Kilobyte (KB), Megabyte (MB), Gigabyte (GB), and Terabyte (TB), each unit being 1024 times the previous one.",
-    "topic": "Memory and Storage"
+    "explanation": "e-Pragati is AP's comprehensive e-governance platform that integrates multiple departmental services onto a single technological backbone.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 80,
     "difficulty": "Easy",
-    "question": "1 Gigabyte (GB) is equal to how many Megabytes (MB)?",
+    "question": "Meebhoomi (■■■■■■) is primarily an online portal used for:",
     "options": [
-      "1000 MB",
-      "1024 MB",
-      "512 MB",
-      "2048 MB"
+      "Grievance redressal",
+      "Land records, adangal, and 1-B records",
+      "Treasury and financial transactions",
+      "COVID-19 vaccination registration"
     ],
     "answer": 1,
-    "explanation": "Following the binary chain used in computing, 1 Gigabyte (GB) equals 1024 Megabytes (MB).",
-    "topic": "Memory and Storage"
+    "explanation": "Meebhoomi is AP's online portal that provides land records, adangal details, 1-B records, and land ownership information, directly relevant to VRO duties.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 81,
-    "difficulty": "Hard",
-    "question": "Why does APPSC caution students not to confuse the 1024 chain with the decimal (1000) system?",
+    "difficulty": "Medium",
+    "question": "Which AP system focuses on digitised land records and mutation management?",
     "options": [
-      "Because computers do not use binary units at all",
-      "Because storage device marketing often uses the decimal (1000) system, which differs from the binary system used internally by computers",
-      "Because 1000 is always the correct value for computer memory",
-      "Because ROM uses a different measurement system than RAM"
+      "Web Land Management System (WLMS)",
+      "Spandana",
+      "CFMS",
+      "AP Online"
     ],
-    "answer": 1,
-    "explanation": "Storage manufacturers often market devices using the decimal (1000) system for capacity, while computers internally calculate memory using the binary (1024) system, leading to a common point of confusion.",
-    "topic": "Memory and Storage"
+    "answer": 0,
+    "explanation": "The Web Land Management System (WLMS) focuses on digitised land records and the management of land mutations in Andhra Pradesh.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 82,
     "difficulty": "Easy",
-    "question": "Which secondary storage device has an approximate capacity of 1.44 MB and is now considered obsolete?",
+    "question": "Which AP portal serves as a citizen service delivery platform for certificates, bill payments, and applications?",
     "options": [
-      "CD",
-      "DVD",
-      "Floppy Disk",
-      "Pen Drive"
+      "Meebhoomi",
+      "AP Online",
+      "Spandana",
+      "CFMS"
     ],
-    "answer": 2,
-    "explanation": "The Floppy Disk had a capacity of approximately 1.44 MB and is now obsolete, though it is still asked about historically in exams.",
-    "topic": "Memory and Storage"
+    "answer": 1,
+    "explanation": "AP Online is a citizen service delivery portal that provides services such as certificates, bill payments, and various applications.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 83,
     "difficulty": "Medium",
-    "question": "A standard single-layer DVD has an approximate storage capacity of:",
+    "question": "Which AP digital tool is used by village or ward volunteers for doorstep delivery of government services?",
     "options": [
-      "700 MB",
-      "1.44 MB",
-      "4.7 GB",
-      "1 TB"
+      "Gram Volunteer / Ward Volunteer App",
+      "Spandana",
+      "CFMS",
+      "e-Pragati"
     ],
-    "answer": 2,
-    "explanation": "A single-layer DVD has an approximate capacity of 4.7 GB, which is significantly higher than a CD's 700 MB capacity.",
-    "topic": "Memory and Storage"
+    "answer": 0,
+    "explanation": "The Gram Volunteer / Ward Volunteer App is a digital tool used by village and ward volunteers to deliver government services directly at citizens' doorsteps.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 84,
     "difficulty": "Easy",
-    "question": "Which secondary storage technology uses magnetic storage with moving parts?",
+    "question": "Which AP platform is the primary grievance redressal system of the state government?",
     "options": [
-      "SSD",
-      "HDD",
-      "Pen Drive",
-      "Memory Card"
+      "Spandana",
+      "Meebhoomi",
+      "AP Online",
+      "WLMS"
     ],
-    "answer": 1,
-    "explanation": "HDD (Hard Disk Drive) uses magnetic storage technology with moving mechanical parts, unlike SSDs which use flash memory chips with no moving parts.",
-    "topic": "Memory and Storage"
+    "answer": 0,
+    "explanation": "Spandana is the grievance redressal platform of the Andhra Pradesh Government, allowing citizens to raise and track complaints.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 85,
     "difficulty": "Medium",
-    "question": "Which of the following is TRUE regarding SSD compared to HDD?",
+    "question": "CFMS (Comprehensive Financial Management System) in Andhra Pradesh is primarily used for:",
     "options": [
-      "SSD is slower than HDD",
-      "SSD makes more mechanical noise than HDD",
-      "SSD is generally faster and more durable due to the absence of moving parts",
-      "SSD always has a lower price per GB than HDD"
+      "Land record management",
+      "Treasury and financial transactions of the AP Government",
+      "COVID-19 vaccination tracking",
+      "Grievance redressal"
     ],
-    "answer": 2,
-    "explanation": "SSD (Solid State Drive) is generally faster and more durable than HDD because it uses flash memory chips with no moving parts, unlike HDD's magnetic spinning disk.",
-    "topic": "Memory and Storage"
+    "answer": 1,
+    "explanation": "CFMS is used for treasury and financial transactions of the Andhra Pradesh Government, ensuring transparent and efficient financial management.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 86,
     "difficulty": "Easy",
-    "question": "Which of the following storage devices is portable and commonly used to transfer files between computers via a USB port?",
+    "question": "Direct Benefit Transfer (DBT) is a mechanism that primarily aims to:",
     "options": [
-      "Hard Disk Drive",
-      "Pen Drive / USB Drive",
-      "CD-ROM",
-      "Cache Memory"
+      "Increase the number of middlemen in welfare schemes",
+      "Transfer government welfare scheme benefits directly into a beneficiary's bank account, reducing leakages",
+      "Replace Aadhaar-based identification systems",
+      "Eliminate the need for bank accounts entirely"
     ],
     "answer": 1,
-    "explanation": "A Pen Drive (USB Drive) is a portable flash storage device commonly used to transfer files between different computers via a USB port.",
-    "topic": "Memory and Storage"
+    "explanation": "DBT transfers government welfare scheme benefits and subsidies directly into a beneficiary's bank account, reducing leakages and the involvement of middlemen.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 87,
     "difficulty": "Easy",
-    "question": "Which of the following memory types would typically be found inside a digital camera or mobile phone for storing photos?",
+    "question": "The JAM Trinity, which forms the foundation of effective DBT delivery, consists of:",
     "options": [
-      "Cache Memory",
-      "Memory Card",
-      "ROM",
-      "Register"
+      "Jan Dhan, Aadhaar, Mobile",
+      "Jan Dhan, AP Online, Meebhoomi",
+      "Justice, Aadhaar, MyGov",
+      "Jan Dhan, ATM, Mobile"
     ],
-    "answer": 1,
-    "explanation": "A Memory Card is commonly used in digital cameras and mobile phones for storing photos and other data, offering portable and expandable storage.",
-    "topic": "Memory and Storage"
+    "answer": 0,
+    "explanation": "The JAM Trinity consists of Jan Dhan (bank accounts), Aadhaar (identity), and Mobile (connectivity), which together enable effective DBT delivery.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 88,
-    "difficulty": "Hard",
-    "question": "Why is Primary Memory generally more expensive per unit than Secondary Memory?",
+    "difficulty": "Easy",
+    "question": "In the JAM Trinity, what does the 'A' represent?",
     "options": [
-      "Because Primary Memory offers much higher speed and direct CPU accessibility",
-      "Because Secondary Memory is volatile",
-      "Because Primary Memory has lower storage capacity limits only",
-      "Because Secondary Memory cannot store any data"
+      "Application",
+      "Aadhaar (Identity)",
+      "Automation",
+      "AP Online"
     ],
-    "answer": 0,
-    "explanation": "Primary Memory (RAM/ROM) is more expensive per unit mainly because it offers significantly higher speed and is directly accessible by the CPU, unlike the comparatively slower and cheaper Secondary Memory.",
-    "topic": "Memory and Storage"
+    "answer": 1,
+    "explanation": "In the JAM Trinity, 'A' stands for Aadhaar, representing the identity component that helps ensure benefits reach the correct beneficiary.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 89,
-    "difficulty": "Easy",
-    "question": "If hardware is the body of a computer, software is best described as:",
+    "difficulty": "Hard",
+    "question": "Why are questions linking 'digital literacy' with the VRO's future job role a favourite framing in APPSC Group-3 exams?",
     "options": [
-      "The skeleton",
-      "The soul that makes the body function meaningfully",
-      "An unnecessary add-on",
-      "A type of hardware component"
+      "Because VROs never use digital platforms in their duties",
+      "Because VROs interact with platforms like Meebhoomi, Web Land, and grievance portals on a near-daily basis",
+      "Because digital literacy has no connection with land administration",
+      "Because APPSC only tests theoretical computer knowledge"
     ],
     "answer": 1,
-    "explanation": "Software is the set of instructions that tells hardware what to do; without it, hardware alone cannot function meaningfully, similar to a body without a soul.",
-    "topic": "Software and Operating Systems"
+    "explanation": "As future VROs will personally interact with Meebhoomi, Web Land, and grievance portals almost daily, APPSC frequently frames questions connecting digital literacy concepts directly with the VRO's real job responsibilities.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 90,
-    "difficulty": "Easy",
-    "question": "Which of the following is the correct broad classification of software?",
+    "difficulty": "Medium",
+    "question": "Which of the following AP welfare scheme portals is associated with DBT-based disbursal tracking?",
     "options": [
-      "System Software and Application Software",
-      "Input Software and Output Software",
-      "Primary Software and Secondary Software",
-      "Volatile Software and Non-volatile Software"
+      "YSR Sunna Vaddi and other welfare scheme portals",
+      "CERT-In",
+      "IT Act, 2000",
+      "OMR"
     ],
     "answer": 0,
-    "explanation": "Software is broadly classified into System Software, which manages hardware, and Application Software, which helps users perform specific tasks.",
-    "topic": "Software and Operating Systems"
+    "explanation": "YSR Sunna Vaddi and other welfare scheme portals are associated with DBT (Direct Benefit Transfer) based disbursal tracking for various state welfare schemes.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 91,
-    "difficulty": "Easy",
-    "question": "Which category of software acts as a bridge between hardware and the user, managing and controlling hardware resources?",
+    "difficulty": "Hard",
+    "question": "Blockchain technology pilots explored in Andhra Pradesh are primarily aimed at:",
     "options": [
-      "Application Software",
-      "System Software",
-      "Utility Software (only)",
-      "Firmware (only)"
+      "Improving grievance redressal speed only",
+      "Securing land records to prevent tampering and fraud",
+      "Replacing the Meebhoomi portal entirely",
+      "Managing treasury transactions"
     ],
     "answer": 1,
-    "explanation": "System Software, such as an Operating System, manages and controls hardware while acting as a bridge between the hardware and the user.",
-    "topic": "Software and Operating Systems"
+    "explanation": "AP has explored blockchain technology pilots specifically to secure land records and prevent tampering and fraud, bridging VRO subject knowledge with modern digital literacy concepts.",
+    "topic": "Digital India and AP E-Governance"
   },
   {
     "id": 92,
-    "difficulty": "Easy",
-    "question": "Which of the following is an example of Application Software?",
+    "difficulty": "Medium",
+    "question": "Which of the following best explains why 'naming/rebranding of schemes' is highlighted as an important exam tip in this chapter?",
     "options": [
-      "Windows",
-      "Linux",
-      "MS Word",
-      "Device Driver"
+      "Because scheme names never change over time",
+      "Because Digital India and AP e-Governance scheme names can be renamed or updated, so candidates should verify the latest names before the exam",
+      "Because scheme names are irrelevant to APPSC questions",
+      "Because only central government schemes get renamed, never state schemes"
     ],
-    "answer": 2,
-    "explanation": "MS Word is Application Software, designed to help users perform a specific task such as word processing, unlike Windows and Linux which are Operating Systems (System Software).",
-    "topic": "Software and Operating Systems"
+    "answer": 1,
+    "explanation": "The chapter advises candidates to stay updated because cyber security and Digital India-related schemes evolve over time, and government portals or schemes are sometimes renamed, making it important to verify current names before the exam.",
+    "topic": "Digital India and AP E-Governance Emerging Technologies"
   },
   {
     "id": 93,
     "difficulty": "Easy",
-    "question": "Antivirus software and Disk Cleanup tools fall under which category of software?",
+    "question": "Machines performing tasks that normally require human intelligence, such as decision-making and recognition, describes:",
     "options": [
-      "Application Software",
-      "Utility Software",
-      "Firmware",
-      "Middleware"
+      "Cloud Computing",
+      "Artificial Intelligence (AI)",
+      "Big Data",
+      "Blockchain"
     ],
     "answer": 1,
-    "explanation": "Utility Software, including antivirus and disk cleanup tools, is designed to maintain and optimise system performance rather than perform user-specific tasks.",
-    "topic": "Software and Operating Systems"
+    "explanation": "Artificial Intelligence (AI) refers to machines performing tasks that normally require human intelligence, such as decision-making, recognition, and reasoning.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 94,
     "difficulty": "Easy",
-    "question": "Which of the following best defines an Operating System (OS)?",
+    "question": "A subset of AI where machines learn from data patterns without being explicitly programmed for every scenario is known as:",
     "options": [
-      "A hardware component that stores data permanently",
-      "System software that manages hardware resources and acts as an interface between the user and hardware",
-      "An application used only for typing documents",
-      "A type of secondary storage device"
+      "Machine Learning (ML)",
+      "Internet of Things (IoT)",
+      "Cloud Computing",
+      "Big Data"
     ],
-    "answer": 1,
-    "explanation": "An Operating System is the most important system software; it manages hardware resources like CPU, memory, and storage, and provides an interface between the user and the hardware.",
-    "topic": "Software and Operating Systems"
+    "answer": 0,
+    "explanation": "Machine Learning (ML) is a subset of AI in which machines learn from data patterns rather than being explicitly programmed for every possible scenario.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 95,
-    "difficulty": "Medium",
-    "question": "Which OS function involves managing multiple running programs simultaneously?",
+    "difficulty": "Easy",
+    "question": "A network of physical devices such as sensors and appliances connected to the internet, sharing data, describes:",
     "options": [
-      "File Management",
-      "Process Management",
-      "Device Management",
-      "Security Management"
+      "Cloud Computing",
+      "Big Data",
+      "Internet of Things (IoT)",
+      "Blockchain"
     ],
-    "answer": 1,
-    "explanation": "Process Management is the OS function responsible for managing multiple programs running concurrently, allocating CPU time appropriately to each.",
-    "topic": "Software and Operating Systems"
+    "answer": 2,
+    "explanation": "The Internet of Things (IoT) refers to a network of physical devices, such as sensors and appliances, that are connected to the internet and share data with each other.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 96,
     "difficulty": "Easy",
-    "question": "Which OS function is responsible for organising data into files and folders?",
+    "question": "Storing and accessing data or programs over the internet instead of on a local hard drive is known as:",
     "options": [
-      "Process Management",
-      "Memory Management",
-      "File Management",
-      "User Interface"
+      "Cloud Computing",
+      "Machine Learning",
+      "Blockchain",
+      "Big Data"
     ],
-    "answer": 2,
-    "explanation": "File Management is the OS function that organises data into files and folders, enabling users to store, retrieve, and manage data efficiently.",
-    "topic": "Software and Operating Systems"
+    "answer": 0,
+    "explanation": "Cloud Computing refers to storing and accessing data or programs over the internet, rather than relying solely on local storage devices such as a hard drive.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 97,
-    "difficulty": "Medium",
-    "question": "Which OS function involves controlling input/output devices via drivers?",
+    "difficulty": "Easy",
+    "question": "Extremely large datasets that are analysed to reveal patterns and trends are referred to as:",
     "options": [
-      "Device Management",
-      "Security Management",
-      "Memory Management",
-      "Process Management"
+      "Big Data",
+      "Cloud Computing",
+      "IoT",
+      "Blockchain"
     ],
     "answer": 0,
-    "explanation": "Device Management is the OS function responsible for controlling input/output devices, typically through the use of device drivers.",
-    "topic": "Software and Operating Systems"
+    "explanation": "Big Data refers to extremely large and complex datasets that are analysed to uncover patterns, trends, and insights that would be difficult to detect otherwise.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 98,
     "difficulty": "Easy",
-    "question": "Which OS function protects data through user accounts and passwords?",
+    "question": "A distributed, tamper-resistant digital ledger technology that forms the base of cryptocurrencies is known as:",
     "options": [
-      "File Management",
-      "Security Management",
-      "Device Management",
-      "Process Management"
+      "Cloud Computing",
+      "Blockchain",
+      "Big Data",
+      "Machine Learning"
     ],
     "answer": 1,
-    "explanation": "Security Management is the OS function that protects data by implementing user accounts, passwords, and access controls.",
-    "topic": "Software and Operating Systems"
+    "explanation": "Blockchain is a distributed, tamper-resistant digital ledger technology that underlies cryptocurrencies and is also explored for applications like securing land records.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 99,
-    "difficulty": "Easy",
-    "question": "GUI and CLI are two forms of which OS function?",
+    "difficulty": "Medium",
+    "question": "Which emerging technology has AP explored specifically to secure land records against tampering and fraud?",
     "options": [
-      "Memory Management",
-      "User Interface",
-      "Device Management",
-      "Process Management"
+      "Cloud Computing",
+      "Blockchain",
+      "Internet of Things",
+      "Big Data"
     ],
     "answer": 1,
-    "explanation": "The User Interface function of an OS provides either a GUI (Graphical User Interface) or a CLI (Command Line Interface) for user interaction with the computer.",
-    "topic": "Software and Operating Systems"
+    "explanation": "AP has explored Blockchain technology pilots specifically to secure land records and prevent tampering and fraud, connecting emerging tech with land administration.",
+    "topic": "Emerging Technologies"
   },
   {
     "id": 100,
-    "difficulty": "Medium",
-    "question": "Which type of Operating System processes jobs in batches without any user interaction during execution?",
+    "difficulty": "Hard",
+    "question": "Which of the following best distinguishes Machine Learning from general Artificial Intelligence?",
     "options": [
-      "Real-Time OS",
-      "Batch OS",
-      "Time-Sharing OS",
-      "Distributed OS"
+      "Machine Learning is unrelated to Artificial Intelligence",
+      "Machine Learning is a subset of AI focused on learning from data patterns, while AI is the broader concept of machines performing human-like intelligent tasks",
+      "AI is a subset of Machine Learning",
+      "Machine Learning only applies to robotics, not software"
     ],
     "answer": 1,
-    "explanation": "A Batch OS processes a group of jobs together without requiring user interaction during execution, a method commonly used in early mainframe systems.",
-    "topic": "Software and Operating Systems"
+    "explanation": "Machine Learning is a subset of the broader field of Artificial Intelligence; while AI encompasses machines performing any human-like intelligent task, ML specifically focuses on learning from data patterns.",
+    "topic": "Emerging Technologies"
   }
 ];
