@@ -589,6 +589,12 @@ function ResultsView({
         </div>
       )}
 
+      <VsBestCard
+        currentScore={score}
+        total={total}
+        currentSeconds={secondsUsed}
+        prior={prior}
+      />
 
       <div className="glass rounded-2xl p-6">
         <h3 className="mb-4 font-display text-lg font-semibold">Score by topic</h3>
