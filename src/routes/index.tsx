@@ -501,6 +501,7 @@ function ResultsView({
   const [board, setBoard] = useState<LeaderboardEntry[]>([]);
   const [rank, setRank] = useState<number>(0);
   const [isNewBest, setIsNewBest] = useState(false);
+  const [prior, setPrior] = useState<LeaderboardEntry | null>(null);
   const recordedRef = useRef(false);
 
   useEffect(() => {
@@ -516,6 +517,7 @@ function ResultsView({
     setBoard(result.board);
     setRank(result.rank);
     setIsNewBest(result.isNewBest);
+    setPrior(result.prior ?? null);
   }, [name, score, total, pct, secondsUsed]);
 
   return (
