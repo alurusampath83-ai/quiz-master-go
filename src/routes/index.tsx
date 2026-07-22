@@ -3,6 +3,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { questions, type Question } from "@/lib/quiz-data";
 import {
   formatDuration,
+  getDailyStanding,
   getLeaderboard,
   recordScore,
   type LeaderboardEntry,
