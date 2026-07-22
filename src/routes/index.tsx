@@ -503,6 +503,8 @@ function ResultsView({
   const [rank, setRank] = useState<number>(0);
   const [isNewBest, setIsNewBest] = useState(false);
   const [prior, setPrior] = useState<LeaderboardEntry | null>(null);
+  const [dailyRank, setDailyRank] = useState<number>(0);
+  const [dailyTotal, setDailyTotal] = useState<number>(0);
   const recordedRef = useRef(false);
 
   useEffect(() => {
@@ -519,6 +521,9 @@ function ResultsView({
     setRank(result.rank);
     setIsNewBest(result.isNewBest);
     setPrior(result.prior ?? null);
+    const daily = getDailyStanding(name);
+    setDailyRank(daily.rank);
+    setDailyTotal(daily.total);
   }, [name, score, total, pct, secondsUsed]);
 
   return (
